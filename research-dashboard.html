@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Research Analytics & Model Benchmarks - HALOS v2.0</title>
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/dashboard.css" />
+  <link rel="stylesheet" href="/css/forms.css" />
+  <link rel="stylesheet" href="/css/responsive.css" />
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="app-sidebar">
+      <div class="sidebar-header">
+        <a href="/index.html" class="brand-logo">
+          <div class="logo-badge">H</div>
+          <div class="brand-info">
+            <h1>HALOS</h1>
+            <p>DIETARY SALT AI</p>
+          </div>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Overview</div>
+        <a href="/index.html" class="nav-link">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          Dashboard
+        </a>
+
+        <div class="nav-section-title">Assessment Pipeline</div>
+        <a href="/assessment.html" class="nav-link">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>
+          1. Participant Reg
+        </a>
+        <a href="/dietary-recall.html" class="nav-link">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          2. 24-hr Recall
+        </a>
+        <a href="/monthly-questionnaire.html" class="nav-link">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+          3. Food Frequency
+        </a>
+        <a href="/results.html" class="nav-link">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          4. AI Salt Assessment
+        </a>
+
+        <div class="nav-section-title">Research & Data</div>
+        <a href="/patients.html" class="nav-link">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+          Participant Registry
+        </a>
+        <a href="/research-dashboard.html" class="nav-link active">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          Research Analytics & CSV
+        </a>
+        <a href="/about.html" class="nav-link">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          Methodology & Protocol
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-status-card">
+          <div class="status-dot"></div>
+          <div>
+            <div class="user-status-text" id="user-role-name">Principal Investigator</div>
+            <div class="user-status-sub" id="user-role-badge">RESEARCHER</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-wrapper">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="mobile-nav-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+          <h2 class="page-title">Scientific Analytics & Model Benchmarks</h2>
+        </div>
+
+        <div class="topbar-right">
+          <button class="btn btn-primary btn-sm" id="btn-export-research-csv">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 16px; height: 16px; margin-right: 6px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            Export Research CSV
+          </button>
+        </div>
+      </header>
+
+      <main class="content-body">
+        <!-- Cohort Summary Stats -->
+        <div class="dashboard-grid" style="margin-bottom: 24px;">
+          <div class="card stat-card">
+            <span class="stat-label">Total Cohort Size</span>
+            <div class="stat-value-group">
+              <span class="stat-value" id="res-total-participants">0</span>
+              <span class="stat-unit">records</span>
+            </div>
+            <div class="stat-meta">Informed consent participants</div>
+          </div>
+
+          <div class="card stat-card">
+            <span class="stat-label">Cohort Mean Predicted Salt</span>
+            <div class="stat-value-group">
+              <span class="stat-value" id="res-mean-salt">—</span>
+            </div>
+            <div class="stat-meta">Reference: 5.0 g/day target</div>
+          </div>
+
+          <div class="card stat-card">
+            <span class="stat-label">Cohort Median Predicted Salt</span>
+            <div class="stat-value-group">
+              <span class="stat-value" id="res-median-salt">—</span>
+            </div>
+            <div class="stat-meta">Robust central tendency</div>
+          </div>
+
+          <div class="card stat-card">
+            <span class="stat-label">Risk Category Breakdown</span>
+            <div style="font-size: 13px; font-weight: 600; margin-top: 6px; display: flex; flex-direction: column; gap: 4px;">
+              <span style="color: var(--risk-higher);">Higher: <strong id="res-pct-higher">0%</strong></span>
+              <span style="color: var(--risk-moderate);">Moderate: <strong id="res-pct-moderate">0%</strong></span>
+              <span style="color: var(--risk-lower);">Lower: <strong id="res-pct-lower">0%</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Intake Distribution Histogram -->
+        <div class="card" style="margin-bottom: 28px;">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title">Estimated Dietary Salt Intake Distribution</h3>
+              <div class="card-subtitle">Aggregated assessment frequencies across research cohort intervals</div>
+            </div>
+          </div>
+
+          <div id="intake-distribution-bins" style="display: flex; flex-direction: column; gap: 12px;">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Machine Learning Model Benchmark Comparison -->
+        <div class="card" style="margin-bottom: 28px;">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title">Scientific ML Model Validation & Benchmark Comparison</h3>
+              <div class="card-subtitle">
+                5-fold cross-validation and held-out test evaluation across candidate regression algorithms (scikit-learn).
+              </div>
+            </div>
+            <div style="font-size: 12px; color: var(--text-muted);">
+              Trained: <span id="model-training-date">—</span> | Train: <span id="model-train-size">—</span> | Test: <span id="model-test-size">—</span>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Algorithm Candidate</th>
+                  <th>5-Fold CV MAE</th>
+                  <th>5-Fold CV RMSE</th>
+                  <th>5-Fold CV R²</th>
+                  <th>Test MAE</th>
+                  <th>Test RMSE</th>
+                  <th>Test R²</th>
+                </tr>
+              </thead>
+              <tbody id="model-comparison-tbody">
+                <tr>
+                  <td colspan="7" style="text-align: center; color: var(--text-muted); padding: 24px;">
+                    Loading model validation metadata...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div style="margin-top: 16px; padding: 12px; background-color: var(--bg-surface-subtle); border-radius: var(--radius-md); font-size: 12px; color: var(--text-muted);">
+            <strong>Scientific Note:</strong> The Random Forest Regressor demonstrated superior non-linear mapping on high-sodium food interactions and multi-frequency response matrices, achieving the lowest test Mean Absolute Error (MAE) and highest coefficient of determination (R²).
+          </div>
+        </div>
+      </main>
+
+      <footer class="app-footer">
+        <div>
+          <span class="footer-highlight">HALOS v2.0</span> • Research Prototype for Dietary Salt Assessment
+        </div>
+        <div style="margin-top: 4px; color: var(--text-light);">
+          AI-assisted dietary assessment — not a medical diagnosis. Cloudflare Workers + D1 + Python FastAPI ML Architecture.
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/validation.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/research.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Researcher Sign-In - HALOS v2.0</title>
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/dashboard.css" />
+  <link rel="stylesheet" href="/css/forms.css" />
+  <link rel="stylesheet" href="/css/responsive.css" />
+</head>
+<body style="display: flex; align-items: center; justify-content: center; min-height: 100vh; background-color: var(--bg-body); padding: 20px;">
+
+  <div class="card" style="width: 100%; max-width: 440px; box-shadow: var(--shadow-lg);" id="login-card">
+    <div style="text-align: center; margin-bottom: 24px;">
+      <div class="logo-badge" style="width: 48px; height: 48px; font-size: 22px; margin: 0 auto 12px auto;">H</div>
+      <h2 style="font-size: 22px; font-weight: 800; color: var(--text-main); margin-bottom: 4px;">HALOS v2.0</h2>
+      <p style="font-size: 13px; color: var(--text-muted);">AI-Assisted Dietary Salt Assessment Suite</p>
+    </div>
+
+    <div class="alert alert-info" style="margin-bottom: 20px; font-size: 12px;">
+      <strong>Research Gateway:</strong> Select authorized role to proceed. (Production deployments connect with Cloudflare Access or OAuth).
+    </div>
+
+    <form id="researcher-login-form">
+      <div class="form-group" style="margin-bottom: 16px;">
+        <label class="form-label" for="select-login-role">Authorized Study Role</label>
+        <select id="select-login-role" class="form-control" required>
+          <option value="RESEARCHER">Principal Investigator (RESEARCHER)</option>
+          <option value="DATA_COLLECTOR">Field Research Assistant (DATA_COLLECTOR)</option>
+          <option value="ADMIN">System Administrator (ADMIN)</option>
+        </select>
+      </div>
+
+      <div class="form-group" style="margin-bottom: 20px;">
+        <label class="form-label" for="input-access-token">Study Access Key / Token</label>
+        <input type="password" id="input-access-token" class="form-control" value="HALOS-STUDY-2026" placeholder="Enter research token..." />
+        <div class="form-hint">Default study key pre-filled for prototype session.</div>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;" id="btn-login-submit">
+        Access Research Dashboard →
+      </button>
+    </form>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('researcher-login-form');
+      if (form) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const role = document.getElementById('select-login-role')?.value || 'RESEARCHER';
+          const token = document.getElementById('input-access-token')?.value || '';
+
+          HALOS_AUTH.setRole(role);
+          HALOS_AUTH.setAuthToken(token);
+          HALOS_UTILS.showToast(`Signed in as ${role}`, 'success');
+
+          setTimeout(() => {
+            window.location.href = '/index.html';
+          }, 350);
+        });
+      }
+    });
+  </script>
+</body>
+</html>

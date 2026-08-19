@@ -1,0 +1,6 @@
+{
+  "name": "HALOS v2.0 - Dietary Salt Intake Assessment System",
+  "description": "AI-assisted research prototype for dietary salt intake assessment and ML prediction with Cloudflare Worker and D1 architecture.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

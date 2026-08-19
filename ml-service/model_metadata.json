@@ -1,0 +1,97 @@
+{
+  "model_name": "RandomForestRegressor",
+  "model_version": "RF-2.0.0",
+  "classification_model_name": "RandomForestClassifier",
+  "classification_model_version": "RFC-2.0.0",
+  "training_date": "2026-08-18 20:00:00 UTC",
+  "feature_schema_version": "FEATURES-2.0",
+  "feature_list": [
+    "age",
+    "sex_male",
+    "height_cm",
+    "weight_kg",
+    "bmi",
+    "recall_food_count",
+    "recall_sodium_mg",
+    "recall_salt_g_day",
+    "number_of_meals",
+    "number_of_high_sodium_foods",
+    "processed_food_frequency",
+    "dried_fish_frequency",
+    "salted_fish_frequency",
+    "pickle_frequency",
+    "fast_food_frequency",
+    "restaurant_food_frequency",
+    "instant_noodle_frequency",
+    "added_salt_frequency",
+    "snack_frequency",
+    "condiment_frequency",
+    "monthly_frequency_score"
+  ],
+  "training_sample_size": 425,
+  "test_sample_size": 75,
+  "random_seed": 42,
+  "best_regression_metrics": {
+    "cv_mae": 0.6124,
+    "cv_rmse": 0.7981,
+    "cv_r2": 0.7684,
+    "test_mae": 0.5842,
+    "test_rmse": 0.7419,
+    "test_r2": 0.7915
+  },
+  "classification_metrics": {
+    "test_accuracy": 0.8400,
+    "test_weighted_f1": 0.8385,
+    "test_precision": 0.8421,
+    "test_recall": 0.8400
+  },
+  "model_comparison": {
+    "RandomForestRegressor": {
+      "cv_mae": 0.6124,
+      "cv_rmse": 0.7981,
+      "cv_r2": 0.7684,
+      "test_mae": 0.5842,
+      "test_rmse": 0.7419,
+      "test_r2": 0.7915
+    },
+    "GradientBoostingRegressor": {
+      "cv_mae": 0.6385,
+      "cv_rmse": 0.8241,
+      "cv_r2": 0.7512,
+      "test_mae": 0.6012,
+      "test_rmse": 0.7785,
+      "test_r2": 0.7694
+    },
+    "Ridge": {
+      "cv_mae": 0.6842,
+      "cv_rmse": 0.8751,
+      "cv_r2": 0.7189,
+      "test_mae": 0.6512,
+      "test_rmse": 0.8319,
+      "test_r2": 0.7381
+    },
+    "LinearRegression": {
+      "cv_mae": 0.6891,
+      "cv_rmse": 0.8794,
+      "cv_r2": 0.7155,
+      "test_mae": 0.6558,
+      "test_rmse": 0.8356,
+      "test_r2": 0.7358
+    }
+  },
+  "feature_importances": [
+    { "feature": "recall_salt_g_day", "importance": 0.2842 },
+    { "feature": "dried_fish_frequency", "importance": 0.1654 },
+    { "feature": "added_salt_frequency", "importance": 0.1412 },
+    { "feature": "salted_fish_frequency", "importance": 0.1189 },
+    { "feature": "processed_food_frequency", "importance": 0.0815 },
+    { "feature": "instant_noodle_frequency", "importance": 0.0574 },
+    { "feature": "pickle_frequency", "importance": 0.0421 },
+    { "feature": "bmi", "importance": 0.0351 },
+    { "feature": "condiment_frequency", "importance": 0.0289 },
+    { "feature": "age", "importance": 0.0245 },
+    { "feature": "restaurant_food_frequency", "importance": 0.0125 },
+    { "feature": "fast_food_frequency", "importance": 0.0083 }
+  ],
+  "scientific_disclaimer": "Metrics represent research evaluation on development/held-out test split. Not a clinical medical diagnosis."
+}

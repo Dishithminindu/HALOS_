@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Monthly Food-Frequency Questionnaire - HALOS v2.0</title>
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/dashboard.css" />
+  <link rel="stylesheet" href="/css/forms.css" />
+  <link rel="stylesheet" href="/css/responsive.css" />
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="app-sidebar">
+      <div class="sidebar-header">
+        <a href="/index.html" class="brand-logo">
+          <div class="logo-badge">H</div>
+          <div class="brand-info">
+            <h1>HALOS</h1>
+            <p>DIETARY SALT AI</p>
+          </div>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Overview</div>
+        <a href="/index.html" class="nav-link">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          Dashboard
+        </a>
+
+        <div class="nav-section-title">Assessment Pipeline</div>
+        <a href="/assessment.html" class="nav-link">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>
+          1. Participant Reg
+        </a>
+        <a href="/dietary-recall.html" class="nav-link">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          2. 24-hr Recall
+        </a>
+        <a href="/monthly-questionnaire.html" class="nav-link active">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+          3. Food Frequency
+        </a>
+        <a href="/results.html" class="nav-link">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          4. AI Salt Assessment
+        </a>
+
+        <div class="nav-section-title">Research & Data</div>
+        <a href="/patients.html" class="nav-link">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+          Participant Registry
+        </a>
+        <a href="/research-dashboard.html" class="nav-link">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          Research Analytics & CSV
+        </a>
+        <a href="/about.html" class="nav-link">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          Methodology & Protocol
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-status-card">
+          <div class="status-dot"></div>
+          <div>
+            <div class="user-status-text" id="user-role-name">Principal Investigator</div>
+            <div class="user-status-sub" id="user-role-badge">RESEARCHER</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-wrapper">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="mobile-nav-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+          <h2 class="page-title">Monthly Food-Frequency Questionnaire</h2>
+        </div>
+
+        <div class="topbar-right">
+          <div class="participant-indicator">
+            <span>Participant:</span>
+            <strong id="monthly-study-id">—</strong>
+          </div>
+        </div>
+      </header>
+
+      <main class="content-body">
+        <!-- Stepper -->
+        <div class="stepper-container">
+          <div class="stepper-progress-bar">
+            <div class="stepper-progress-fill" style="width: 65%;"></div>
+          </div>
+          <div class="step-node completed">
+            <div class="step-circle">✓</div>
+            <div class="step-label">Registration</div>
+          </div>
+          <div class="step-node completed">
+            <div class="step-circle">✓</div>
+            <div class="step-label">24-hr Recall</div>
+          </div>
+          <div class="step-node active">
+            <div class="step-circle">3</div>
+            <div class="step-label">Food Frequency</div>
+          </div>
+          <div class="step-node">
+            <div class="step-circle">4</div>
+            <div class="step-label">Salt AI Assessment</div>
+          </div>
+        </div>
+
+        <!-- Survey Instructions -->
+        <div class="alert alert-info">
+          <div>
+            <strong>Habitual Dietary Frequency Scoring:</strong>
+            Rate how frequently the participant consumed each high-sodium food group over the <strong>past 30 days</strong>. This data will be transformed into feature vectors for the Random Forest ML models.
+          </div>
+        </div>
+
+        <form id="monthly-questionnaire-form" style="max-width: 960px; margin: 0 auto;">
+
+          <!-- Category 1 -->
+          <div class="frequency-group-card">
+            <div class="frequency-item-title">1. Processed & Canned Meats / Foods</div>
+            <div class="frequency-item-desc">Sausages, canned fish, ham, processed meats, meatballs, canned meats.</div>
+            <div class="frequency-scale-row">
+              <label class="freq-option-label"><input type="radio" name="processed_food_frequency" value="0" checked /><span class="freq-option-num">0</span><span class="freq-option-text">Never</span></label>
+              <label class="freq-option-label"><input type="radio" name="processed_food_frequency" value="1" /><span class="freq-option-num">1</span><span class="freq-option-text">&lt;1/mo</span></label>
+              <label class="freq-option-label"><input type="radio" name="processed_food_frequency" value="2" /><span class="freq-option-num">2</span><span class="freq-option-text">1-3/mo</span></label>
+              <label class="freq-option-label"><input type="radio" name="processed_food_frequency" value="3" /><span class="freq-option-num">3</span><span class="freq-option-text">1/wk</span></label>
+              <label class="freq-option-label"><input type="radio" name="processed_food_frequency" value="4" /><span class="freq-option-num">4</span><span class="freq-option-text">2-4/wk</span></label>
+              <label class="freq-option-label"><input type="radio" name="processed_food_frequency" value="5" /><span class="freq-option-num">5</span><span class="freq-option-text">5-6/wk</span></label>
+              <label class="freq-option-label"><input type="radio" name="processed_food_frequency" value="6" /><span class="freq-option-num">6</span><span class="freq-option-text">Daily</span></label>
+              <label class="freq-option-label"><input type="radio" name="processed_food_frequency" value="7" /><span class="freq-option-num">7</span><span class="freq-option-text">&gt;1/day</span></label>
+            </div>
+          </div>
+
+          <!-- Category 2 -->
+          <div class="frequency-group-card">
+            <div class="frequency-item-title">2. Traditional Salted Dried Fish (Karawala)</div>
+            <div class="frequency-item-desc">Fried dried fish, dried fish curry, kattawa, balaya dried fish.</div>
+            <div class="frequency-scale-row">
+              <label class="freq-option-label"><input type="radio" name="dried_fish_frequency" value="0" checked /><span class="freq-option-num">0</span><span class="freq-option-text">Never</span></label>
+              <label class="freq-option-label"><input type="radio" name="dried_fish_frequency" value="1" /><span class="freq-option-num">1</span><span class="freq-option-text">&lt;1/mo</span></label>
+              <label class="freq-option-label"><input type="radio" name="dried_fish_frequency" value="2" /><span class="freq-option-num">2</span><span class="freq-option-text">1-3/mo</span></label>
+              <label class="freq-option-label"><input type="radio" name="dried_fish_frequency" value="3" /><span class="freq-option-num">3</span><span class="freq-option-text">1/wk</span></label>
+              <label class="freq-option-label"><input type="radio" name="dried_fish_frequency" value="4" /><span class="freq-option-num">4</span><span class="freq-option-text">2-4/wk</span></label>
+              <label class="freq-option-label"><input type="radio" name="dried_fish_frequency" value="5" /><span class="freq-option-num">5</span><span class="freq-option-text">5-6/wk</span></label>
+              <label class="freq-option-label"><input type="radio" name="dried_fish_frequency" value="6" /><span class="freq-option-num">6</span><span class="freq-option-text">Daily</span></label>
+              <label class="freq-option-label"><input type="radio" name="dried_fish_frequency" value="7" /><span class="freq-option-num">7</span><span class="freq-option-text">&gt;1/day</span></label>
+            </div>
+          </div>
+
+          <!-- Category 3 -->
+          <div class="frequency-group-card">
+            <div class="frequency-item-title">3. Maldive Fish Sambol, Sprats & Salted Seafood</div>
+            <div class="frequency-item-desc">Maldive fish added to sambols/mallums, salted fried sprats (halmasso), dry shrimp.</div>
+            <div class="frequency-scale-row">
+              <label class="freq-option-label"><input type="radio" name="salted_fish_frequency" value="0" checked /><span class="freq-option-num">0</span><span class="freq-option-text">Never</span></label>
+              <label class="freq-option-label"><input type="radio" name="salted_fish_frequency" value="1" /><span class="freq-option-num">1</span><span class="freq-option-text">&lt;1/mo</span></label>
+              <label class="freq-option-label"><input type="radio" name="salted_fish_frequency" value="2" /><span class="freq-option-num">2</span><span class="freq-option-text">1-3/mo</span></label>
+              <label class="freq-option-label"><input type="radio" name="salted_fish_frequency" value="3" /><span class="freq-option-num">3</span><span class="freq-option-text">1/wk</span></label>
+              <label class="freq-option-label"><input type="radio" name="salted_fish_frequency" value="4" /><span class="freq-option-num">4</span><span class="freq-option-text">2-4/wk</span></label>
+              <label class="freq-option-label"><input type="radio" name="salted_fish_frequency" value="5" /><span class="freq-option-num">5</span><span class="freq-option-text">5-6/wk</span></label>
+              <label class="freq-option-label"><input type="radio" name="salted_fish_frequency" value="6" /><span class="freq-option-num">6</span><span class="freq-option-text">Daily</span></label>
+              <label class="freq-option-label"><input type="radio" name="salted_fish_frequency" value="7" /><span class="freq-option-num">7</span><span class="freq-option-text">&gt;1/day</span></label>
+            </div>
+          </div>
+
+          <!-- Category 4 -->
+          <div class="frequency-group-card">
+            <div class="frequency-item-title">4. Pickles, Preserves & Achcharu</div>
+            <div class="frequency-item-desc">Salted lime pickle (lunu dehi), Malay pickle, sinhala achcharu, mango chutney.</div>
+            <div class="frequency-scale-row">
+              <label class="freq-option-label"><input type="radio" name="pickle_frequency" value="0" checked /><span class="freq-option-num">0</span><span class="freq-option-text">Never</span></label>
+              <label class="freq-option-label"><input type="radio" name="pickle_frequency" value="1" /><span class="freq-option-num">1</span><span class="freq-option-text">&lt;1/mo</span></label>
+              <label class="freq-option-label"><input type="radio" name="pickle_frequency" value="2" /><span class="freq-option-num">2</span><span class="freq-option-text">1-3/mo</span></label>
+              <label class="freq-option-label"><input type="radio" name="pickle_frequency" value="3" /><span class="freq-option-num">3</span><span class="freq-option-text">1/wk</span></label>
+              <label class="freq-option-label"><input type="radio" name="pickle_frequency" value="4" /><span class="freq-option-num">4</span><span class="freq-option-text">2-4/wk</span></label>
+              <label class="freq-option-label"><input type="radio" name="pickle_frequency" value="5" /><span class="freq-option-num">5</span><span class="freq-option-text">5-6/wk</span></label>
+              <label class="freq-option-label"><input type="radio" name="pickle_frequency" value="6" /><span class="freq-option-num">6</span><span class="freq-option-text">Daily</span></label>
+              <label class="freq-option-label"><input type="radio" name="pickle_frequency" value="7" /><span class="freq-option-num">7</span><span class="freq-option-text">&gt;1/day</span></label>
+            </div>
+          </div>
+
+          <!-- Category 5 -->
+          <div class="frequency-group-card">
+            <div class="frequency-item-title">5. Fast Food & Devilled Dishes</div>
+            <div class="frequency-item-desc">Devilled beef/chicken, fried chicken, burgers, pizza, Chinese rolls.</div>
+            <div class="frequency-scale-row">
+              <label class="freq-option-label"><input type="radio" name="fast_food_frequency" value="0" checked /><span class="freq-option-num">0</span><span class="freq-option-text">Never</span></label>
+              <label class="freq-option-label"><input type="radio" name="fast_food_frequency" value="1" /><span class="freq-option-num">1</span><span class="freq-option-text">&lt;1/mo</span></label>
+              <label class="freq-option-label"><input type="radio" name="fast_food_frequency" value="2" /><span class="freq-option-num">2</span><span class="freq-option-text">1-3/mo</span></label>
+              <label class="freq-option-label"><input type="radio" name="fast_food_frequency" value="3" /><span class="freq-option-num">3</span><span class="freq-option-text">1/wk</span></label>
+              <label class="freq-option-label"><input type="radio" name="fast_food_frequency" value="4" /><span class="freq-option-num">4</span><span class="freq-option-text">2-4/wk</span></label>
+              <label class="freq-option-label"><input type="radio" name="fast_food_frequency" value="5" /><span class="freq-option-num">5</span><span class="freq-option-text">5-6/wk</span></label>
+              <label class="freq-option-label"><input type="radio" name="fast_food_frequency" value="6" /><span class="freq-option-num">6</span><span class="freq-option-text">Daily</span></label>
+              <label class="freq-option-label"><input type="radio" name="fast_food_frequency" value="7" /><span class="freq-option-num">7</span><span class="freq-option-text">&gt;1/day</span></label>
+            </div>
+          </div>
+
+          <!-- Category 6 -->
+          <div class="frequency-group-card">
+            <div class="frequency-item-title">6. Restaurant Meals & Takeaway Curries</div>
+            <div class="frequency-item-desc">Eating meals prepared outside home, packeted rice & curry, kottu roti, fried rice.</div>
+            <div class="frequency-scale-row">
+              <label class="freq-option-label"><input type="radio" name="restaurant_food_frequency" value="0" checked /><span class="freq-option-num">0</span><span class="freq-option-text">Never</span></label>
+              <label class="freq-option-label"><input type="radio" name="restaurant_food_frequency" value="1" /><span class="freq-option-num">1</span><span class="freq-option-text">&lt;1/mo</span></label>
+              <label class="freq-option-label"><input type="radio" name="restaurant_food_frequency" value="2" /><span class="freq-option-num">2</span><span class="freq-option-text">1-3/mo</span></label>
+              <label class="freq-option-label"><input type="radio" name="restaurant_food_frequency" value="3" /><span class="freq-option-num">3</span><span class="freq-option-text">1/wk</span></label>
+              <label class="freq-option-label"><input type="radio" name="restaurant_food_frequency" value="4" /><span class="freq-option-num">4</span><span class="freq-option-text">2-4/wk</span></label>
+              <label class="freq-option-label"><input type="radio" name="restaurant_food_frequency" value="5" /><span class="freq-option-num">5</span><span class="freq-option-text">5-6/wk</span></label>
+              <label class="freq-option-label"><input type="radio" name="restaurant_food_frequency" value="6" /><span class="freq-option-num">6</span><span class="freq-option-text">Daily</span></label>
+              <label class="freq-option-label"><input type="radio" name="restaurant_food_frequency" value="7" /><span class="freq-option-num">7</span><span class="freq-option-text">&gt;1/day</span></label>
+            </div>
+          </div>
+
+          <!-- Category 7 -->
+          <div class="frequency-group-card">
+            <div class="frequency-item-title">7. Instant Noodles & Seasoned Soups</div>
+            <div class="frequency-item-desc">Instant ramen, packet noodles prepared with flavor seasoning sachet, bouillons.</div>
+            <div class="frequency-scale-row">
+              <label class="freq-option-label"><input type="radio" name="instant_noodle_frequency" value="0" checked /><span class="freq-option-num">0</span><span class="freq-option-text">Never</span></label>
+              <label class="freq-option-label"><input type="radio" name="instant_noodle_frequency" value="1" /><span class="freq-option-num">1</span><span class="freq-option-text">&lt;1/mo</span></label>
+              <label class="freq-option-label"><input type="radio" name="instant_noodle_frequency" value="2" /><span class="freq-option-num">2</span><span class="freq-option-text">1-3/mo</span></label>
+              <label class="freq-option-label"><input type="radio" name="instant_noodle_frequency" value="3" /><span class="freq-option-num">3</span><span class="freq-option-text">1/wk</span></label>
+              <label class="freq-option-label"><input type="radio" name="instant_noodle_frequency" value="4" /><span class="freq-option-num">4</span><span class="freq-option-text">2-4/wk</span></label>
+              <label class="freq-option-label"><input type="radio" name="instant_noodle_frequency" value="5" /><span class="freq-option-num">5</span><span class="freq-option-text">5-6/wk</span></label>
+              <label class="freq-option-label"><input type="radio" name="instant_noodle_frequency" value="6" /><span class="freq-option-num">6</span><span class="freq-option-text">Daily</span></label>
+              <label class="freq-option-label"><input type="radio" name="instant_noodle_frequency" value="7" /><span class="freq-option-num">7</span><span class="freq-option-text">&gt;1/day</span></label>
+            </div>
+          </div>
+
+          <!-- Category 8 -->
+          <div class="frequency-group-card">
+            <div class="frequency-item-title">8. Habitual Added Table Salt & Cooking Salt</div>
+            <div class="frequency-item-desc">Adding extra table salt directly to cooked food on plate, dipping cut fruit in salt.</div>
+            <div class="frequency-scale-row">
+              <label class="freq-option-label"><input type="radio" name="added_salt_frequency" value="0" checked /><span class="freq-option-num">0</span><span class="freq-option-text">Never</span></label>
+              <label class="freq-option-label"><input type="radio" name="added_salt_frequency" value="1" /><span class="freq-option-num">1</span><span class="freq-option-text">&lt;1/mo</span></label>
+              <label class="freq-option-label"><input type="radio" name="added_salt_frequency" value="2" /><span class="freq-option-num">2</span><span class="freq-option-text">1-3/mo</span></label>
+              <label class="freq-option-label"><input type="radio" name="added_salt_frequency" value="3" /><span class="freq-option-num">3</span><span class="freq-option-text">1/wk</span></label>
+              <label class="freq-option-label"><input type="radio" name="added_salt_frequency" value="4" /><span class="freq-option-num">4</span><span class="freq-option-text">2-4/wk</span></label>
+              <label class="freq-option-label"><input type="radio" name="added_salt_frequency" value="5" /><span class="freq-option-num">5</span><span class="freq-option-text">5-6/wk</span></label>
+              <label class="freq-option-label"><input type="radio" name="added_salt_frequency" value="6" /><span class="freq-option-num">6</span><span class="freq-option-text">Daily</span></label>
+              <label class="freq-option-label"><input type="radio" name="added_salt_frequency" value="7" /><span class="freq-option-num">7</span><span class="freq-option-text">&gt;1/day</span></label>
+            </div>
+          </div>
+
+          <!-- Category 9 -->
+          <div class="frequency-group-card">
+            <div class="frequency-item-title">9. Salty Snacks, Chips & Papadam</div>
+            <div class="frequency-item-desc">Fried papadam, potato crisps, cream crackers, roasted salted peanuts / kadala.</div>
+            <div class="frequency-scale-row">
+              <label class="freq-option-label"><input type="radio" name="snack_frequency" value="0" checked /><span class="freq-option-num">0</span><span class="freq-option-text">Never</span></label>
+              <label class="freq-option-label"><input type="radio" name="snack_frequency" value="1" /><span class="freq-option-num">1</span><span class="freq-option-text">&lt;1/mo</span></label>
+              <label class="freq-option-label"><input type="radio" name="snack_frequency" value="2" /><span class="freq-option-num">2</span><span class="freq-option-text">1-3/mo</span></label>
+              <label class="freq-option-label"><input type="radio" name="snack_frequency" value="3" /><span class="freq-option-num">3</span><span class="freq-option-text">1/wk</span></label>
+              <label class="freq-option-label"><input type="radio" name="snack_frequency" value="4" /><span class="freq-option-num">4</span><span class="freq-option-text">2-4/wk</span></label>
+              <label class="freq-option-label"><input type="radio" name="snack_frequency" value="5" /><span class="freq-option-num">5</span><span class="freq-option-text">5-6/wk</span></label>
+              <label class="freq-option-label"><input type="radio" name="snack_frequency" value="6" /><span class="freq-option-num">6</span><span class="freq-option-text">Daily</span></label>
+              <label class="freq-option-label"><input type="radio" name="snack_frequency" value="7" /><span class="freq-option-num">7</span><span class="freq-option-text">&gt;1/day</span></label>
+            </div>
+          </div>
+
+          <!-- Category 10 -->
+          <div class="frequency-group-card">
+            <div class="frequency-item-title">10. Salty Sauces, Condiments & MSG</div>
+            <div class="frequency-item-desc">Soy sauce, fish sauce, oyster sauce, monosodium glutamate (MSG / Ajinomoto), chilli paste.</div>
+            <div class="frequency-scale-row">
+              <label class="freq-option-label"><input type="radio" name="condiment_frequency" value="0" checked /><span class="freq-option-num">0</span><span class="freq-option-text">Never</span></label>
+              <label class="freq-option-label"><input type="radio" name="condiment_frequency" value="1" /><span class="freq-option-num">1</span><span class="freq-option-text">&lt;1/mo</span></label>
+              <label class="freq-option-label"><input type="radio" name="condiment_frequency" value="2" /><span class="freq-option-num">2</span><span class="freq-option-text">1-3/mo</span></label>
+              <label class="freq-option-label"><input type="radio" name="condiment_frequency" value="3" /><span class="freq-option-num">3</span><span class="freq-option-text">1/wk</span></label>
+              <label class="freq-option-label"><input type="radio" name="condiment_frequency" value="4" /><span class="freq-option-num">4</span><span class="freq-option-text">2-4/wk</span></label>
+              <label class="freq-option-label"><input type="radio" name="condiment_frequency" value="5" /><span class="freq-option-num">5</span><span class="freq-option-text">5-6/wk</span></label>
+              <label class="freq-option-label"><input type="radio" name="condiment_frequency" value="6" /><span class="freq-option-num">6</span><span class="freq-option-text">Daily</span></label>
+              <label class="freq-option-label"><input type="radio" name="condiment_frequency" value="7" /><span class="freq-option-num">7</span><span class="freq-option-text">&gt;1/day</span></label>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="form-actions-bar">
+            <a href="/dietary-recall.html" class="btn btn-secondary">← Back to 24-hr Recall</a>
+            <button type="submit" class="btn btn-primary btn-lg" id="btn-save-monthly">
+              Save Questionnaire & Run ML Prediction →
+            </button>
+          </div>
+        </form>
+      </main>
+
+      <footer class="app-footer">
+        <div>
+          <span class="footer-highlight">HALOS v2.0</span> • Research Prototype for Dietary Salt Assessment
+        </div>
+        <div style="margin-top: 4px; color: var(--text-light);">
+          AI-assisted dietary assessment — not a medical diagnosis. Cloudflare Workers + D1 + Python FastAPI ML Architecture.
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/validation.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/monthlyQuestionnaire.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+/**
+ * HALOS v2.0 - Responsive Breakpoints & Mobile Optimization
+ */
+
+/* Mobile & Tablet Toggle */
+.mobile-nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  color: var(--text-main);
+}
+
+.mobile-nav-toggle svg {
+  width: 24px;
+  height: 24px;
+}
+
+@media (max-width: 1024px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: -280px;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .sidebar.mobile-open {
+    left: 0;
+  }
+
+  .sidebar-backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(15, 23, 42, 0.4);
+    z-index: 35;
+    display: none;
+  }
+
+  .sidebar-backdrop.active {
+    display: block;
+  }
+
+  .mobile-nav-toggle {
+    display: block;
+  }
+
+  .topbar {
+    padding: 0 16px;
+  }
+
+  .content-body {
+    padding: 20px 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-value {
+    font-size: 26px;
+  }
+
+  .results-number {
+    font-size: 38px;
+  }
+
+  .btn {
+    min-height: 44px; /* Touch target size */
+  }
+
+  .form-actions-bar {
+    flex-direction: column-reverse;
+    gap: 12px;
+  }
+
+  .form-actions-bar .btn {
+    width: 100%;
+  }
+
+  /* Responsive table conversion */
+  .data-table-stacked thead {
+    display: none;
+  }
+
+  .data-table-stacked tbody tr {
+    display: block;
+    margin-bottom: 14px;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background-color: var(--bg-surface);
+    padding: 12px;
+  }
+
+  .data-table-stacked td {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .data-table-stacked td:last-child {
+    border-bottom: none;
+  }
+
+  .data-table-stacked td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+
+  /* Compact participant indicator on mobile screens */
+  .participant-indicator {
+    padding: 3px 8px;
+    font-size: 11px;
+    gap: 4px;
+    max-width: 170px;
+  }
+
+  .participant-indicator span {
+    display: none;
+  }
+
+  .participant-indicator strong {
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: var(--font-mono);
+  }
+
+  .participant-indicator .btn {
+    min-height: unset;
+    padding: 2px 6px;
+    font-size: 10px;
+  }
+}
