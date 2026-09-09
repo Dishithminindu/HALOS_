@@ -12,13 +12,6 @@
 </head>
 <body>
 
-  <!-- Loading Splash Screen -->
-  <div id="splash-screen">
-    <div class="splash-logo-ring"></div>
-    <div class="splash-title">HALOS</div>
-    <div class="splash-subtitle">AI-Assisted Dietary Salt Assessment System • v2.0</div>
-  </div>
-
   <div class="app-container">
     <!-- Sidebar Navigation -->
     <aside class="sidebar" id="app-sidebar">
@@ -94,12 +87,15 @@
         </div>
 
         <div class="topbar-right">
+          <!-- Language Switcher Mount -->
+          <div class="halos-lang-mount"></div>
+
           <div id="active-participant-indicator" class="participant-indicator" style="display: none;">
             <span>Active Study ID:</span>
             <strong id="active-study-id-text">—</strong>
             <button id="btn-clear-participant" class="btn btn-secondary btn-sm" style="padding: 2px 6px; font-size: 11px; margin-left: 4px;">Clear</button>
           </div>
-          <a href="/assessment.html" class="btn btn-primary btn-sm" id="topbar-btn-new-assessment">
+          <a href="/assessment.html" class="btn btn-primary btn-sm" id="topbar-btn-new-assessment" data-i18n="topbar_btn_new">
             + New Assessment
           </a>
         </div>
@@ -215,6 +211,7 @@
   </div>
 
   <!-- Scripts -->
+  <script src="/js/i18n.js"></script>
   <script src="/js/api.js"></script>
   <script src="/js/utils.js"></script>
   <script src="/js/validation.js"></script>

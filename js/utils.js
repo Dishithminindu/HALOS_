@@ -51,8 +51,27 @@ const HALOS_UTILS = (function() {
       }
     },
 
+    async getOrFetchActiveParticipant() {
+      // Do not auto-assign external participants silently. Only return explicit active session.
+      return this.getActiveParticipant();
+    },
+
+    hasVerifiedConsent(participant) {
+      const p = participant || this.getActiveParticipant();
+      if (!p || !p.id) return false;
+      if (p.ethical_consent_verified === true || p.consent_agreed === true) return true;
+      if (p.screening && (p.screening.consent_obtained === true || p.screening.consent_agreed === true)) return true;
+      return false;
+    },
+
     setActiveParticipant(participant) {
       try {
+        if (participant) {
+          // Flag consent if valid screening exists
+          if (participant.consent_agreed || (participant.screening && participant.screening.consent_obtained)) {
+            participant.ethical_consent_verified = true;
+          }
+        }
         sessionStorage.setItem('halos_active_participant', JSON.stringify(participant));
         // Dispatch custom event for navbar updates
         window.dispatchEvent(new CustomEvent('halos:participantChanged', { detail: participant }));
@@ -64,6 +83,34 @@ const HALOS_UTILS = (function() {
     clearActiveParticipant() {
       sessionStorage.removeItem('halos_active_participant');
       window.dispatchEvent(new CustomEvent('halos:participantChanged', { detail: null }));
+    },
+
+    // -------------------------------------------------------------
+    // PAGE SEQUENCING & ETHICAL ACCESS ENFORCEMENT
+    // -------------------------------------------------------------
+    enforcePageSequencing(currentStep, options = { allowProviderBypass: true }) {
+      const participant = this.getActiveParticipant();
+      const hasConsent = this.hasVerifiedConsent(participant);
+      const isAuthResearcher = typeof HALOS_AUTH !== 'undefined' && HALOS_AUTH.isAuthenticated && HALOS_AUTH.isAuthenticated();
+
+      // If authorized provider/researcher is in provider mode, permit access
+      if (options.allowProviderBypass && isAuthResearcher) {
+        return true;
+      }
+
+      // Step 1 is always accessible
+      if (currentStep <= 1) return true;
+
+      // Steps 2, 3, 4 strictly require Step 1 completion
+      if (!hasConsent || !participant || !participant.id) {
+        this.showToast('⚠️ Page Sequence Locked: Step 1 (Participant Registration & Informed Consent) must be completed before accessing next steps.', 'warning');
+        setTimeout(() => {
+          window.location.href = `/assessment.html?reason=consent_required&blocked_step=${currentStep}`;
+        }, 400);
+        return false;
+      }
+
+      return true;
     },
 
     // -------------------------------------------------------------
@@ -97,6 +144,10 @@ const HALOS_UTILS = (function() {
     // LOADING OVERLAY
     // -------------------------------------------------------------
     showLoading(message = 'Processing request...') {
+      if (this._loadingTimeout) {
+        clearTimeout(this._loadingTimeout);
+        this._loadingTimeout = null;
+      }
       let overlay = document.getElementById('global-loading-overlay');
       if (!overlay) {
         overlay = document.createElement('div');
@@ -114,9 +165,18 @@ const HALOS_UTILS = (function() {
         if (textEl) textEl.textContent = message;
       }
       overlay.classList.add('active');
+
+      // Fail-safe: Auto-hide after 5 seconds to prevent permanent UI lock in case of network timeouts
+      this._loadingTimeout = setTimeout(() => {
+        this.hideLoading();
+      }, 5000);
     },
 
     hideLoading() {
+      if (this._loadingTimeout) {
+        clearTimeout(this._loadingTimeout);
+        this._loadingTimeout = null;
+      }
       const overlay = document.getElementById('global-loading-overlay');
       if (overlay) {
         overlay.classList.remove('active');

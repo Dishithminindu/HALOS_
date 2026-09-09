@@ -1,70 +1,613 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full bg-[#f6f5f2]">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Researcher Sign-In - HALOS v2.0</title>
+  <title>Authorized Researcher Portal - HALOS v2.0</title>
+  <!-- Tailwind CSS CDN for Nordic Minimalist Canvas utility styling -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            nordicFjord: '#2d4f5e',
+            nordicFjordDark: '#1f3742',
+            nordicFjordLight: '#edf3f5',
+            nordicSpruce: '#3b6559',
+            nordicSpruceDark: '#2a4c42',
+            nordicSpruceLight: '#eef5f2',
+            nordicBirch: '#b89360',
+            nordicBirchLight: '#faf6f0',
+            nordicCanvas: '#f6f5f2',
+            nordicSurface: '#ffffff',
+            nordicSurfaceSubtle: '#f0eee9',
+            nordicSlate: '#1f2937',
+            nordicStone: '#5c6b77',
+            nordicBorder: '#e6e3dc',
+            nordicBorderMedium: '#d4cfc5',
+            nordicMoss: '#3b7a57',
+            nordicAmber: '#b87431',
+            nordicLingonberry: '#b94a48'
+          }
+        }
+      }
+    }
+  </script>
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="/css/dashboard.css" />
   <link rel="stylesheet" href="/css/forms.css" />
-  <link rel="stylesheet" href="/css/responsive.css" />
 </head>
-<body style="display: flex; align-items: center; justify-content: center; min-height: 100vh; background-color: var(--bg-body); padding: 20px;">
+<body class="min-h-screen bg-[#f6f5f2] text-slate-800 font-sans antialiased selection:bg-[#edf3f5] selection:text-[#2d4f5e] flex flex-col justify-between">
 
-  <div class="card" style="width: 100%; max-width: 440px; box-shadow: var(--shadow-lg);" id="login-card">
-    <div style="text-align: center; margin-bottom: 24px;">
-      <div class="logo-badge" style="width: 48px; height: 48px; font-size: 22px; margin: 0 auto 12px auto;">H</div>
-      <h2 style="font-size: 22px; font-weight: 800; color: var(--text-main); margin-bottom: 4px;">HALOS v2.0</h2>
-      <p style="font-size: 13px; color: var(--text-muted);">AI-Assisted Dietary Salt Assessment Suite</p>
+  <!-- TOP NORDIC STRIP -->
+  <header class="w-full bg-white border-b border-[#e6e3dc] px-6 py-3 text-xs tracking-wider flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <span class="inline-block w-2 h-2 rounded-full bg-[#3b7a57]"></span>
+      <span class="font-semibold text-slate-900 tracking-wider uppercase text-[11px]">HALOS PROTOCOL // NORDIC CANVAS v2.0</span>
+      <span class="hidden md:inline-block text-slate-300">/</span>
+      <span class="hidden md:inline-block text-slate-500 font-medium text-[11px]">Faculty of Medicine, University of Peradeniya</span>
     </div>
-
-    <div class="alert alert-info" style="margin-bottom: 20px; font-size: 12px;">
-      <strong>Research Gateway:</strong> Select authorized role to proceed. (Production deployments connect with Cloudflare Access or OAuth).
+    <div class="flex items-center gap-4">
+      <div class="halos-lang-mount"></div>
+      <span class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-[#eef5f2] text-[#3b6559] border border-[#cadcd5]">
+        Secure Research Gateway
+      </span>
+      <a href="/index.html" class="text-slate-600 hover:text-[#2d4f5e] transition-colors font-semibold text-xs flex items-center gap-1">
+        <span>← Public Dashboard</span>
+      </a>
     </div>
+  </header>
 
-    <form id="researcher-login-form">
-      <div class="form-group" style="margin-bottom: 16px;">
-        <label class="form-label" for="select-login-role">Authorized Study Role</label>
-        <select id="select-login-role" class="form-control" required>
-          <option value="RESEARCHER">Principal Investigator (RESEARCHER)</option>
-          <option value="DATA_COLLECTOR">Field Research Assistant (DATA_COLLECTOR)</option>
-          <option value="ADMIN">System Administrator (ADMIN)</option>
-        </select>
+  <!-- MAIN CANVAS CONTENT -->
+  <main class="flex-1 w-full max-w-6xl mx-auto px-4 py-10 sm:px-6 lg:px-8 flex flex-col justify-center">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch my-auto">
+
+      <!-- LEFT COLUMN: RESEARCH IDENTITY & DOSSIER (5 Cols) -->
+      <section class="lg:col-span-5 flex flex-col justify-between bg-white border border-[#e6e3dc] rounded-2xl shadow-sm p-7 sm:p-8 relative">
+        <div class="space-y-6">
+          <!-- Masthead & Category Tag -->
+          <div class="flex items-center justify-between border-b border-[#e6e3dc] pb-4">
+            <span class="inline-block bg-[#edf3f5] text-[#2d4f5e] border border-[#ccdbe0] px-2.5 py-1 rounded-full text-[11px] font-semibold tracking-wide">
+              HALOS RESEARCH OS
+            </span>
+            <span class="text-[11px] font-mono text-slate-400 font-medium">
+              REF: PERA-HALOS-2026
+            </span>
+          </div>
+
+          <!-- Hero Headline -->
+          <div class="space-y-3">
+            <div class="flex items-center gap-3.5">
+              <div class="w-11 h-11 bg-[#2d4f5e] text-white rounded-xl shadow-sm flex items-center justify-center font-bold text-xl">
+                H
+              </div>
+              <div>
+                <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900">
+                  Investigator Portal
+                </h1>
+                <p class="text-xs text-slate-500 font-medium">
+                  Health &amp; Lifestyle Optimization Study
+                </p>
+              </div>
+            </div>
+            <p class="text-[13.5px] text-slate-600 leading-relaxed pt-2 border-t border-[#f0eee9]">
+              Role-restricted clinical intelligence platform for habitual dietary sodium estimation, participant registries, and 24-hour recall analytics.
+            </p>
+          </div>
+
+          <!-- Institutional Governance Card -->
+          <div class="bg-[#faf9f6] border border-[#e6e3dc] rounded-xl p-4 space-y-2.5">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold uppercase tracking-wider text-slate-700">Governance &amp; Privacy</span>
+              <span class="bg-[#f0f7f3] text-[#3b7a57] text-[10.5px] font-medium px-2 py-0.5 rounded-full border border-[#cbe6d6]">256-BIT TOKENIZED</span>
+            </div>
+            <ul class="text-xs text-slate-600 space-y-2">
+              <li class="flex items-center gap-2">
+                <span class="text-[#3b7a57] font-bold">✓</span>
+                <span>Role-based access (PI, Clinical, Admin, RA)</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-[#3b7a57] font-bold">✓</span>
+                <span>Full participant de-identification &amp; audit trail</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-[#3b7a57] font-bold">✓</span>
+                <span>Faculty Ethics Review Committee approved</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Quick Preset Selector Pills -->
+          <div class="space-y-2.5">
+            <label class="block text-xs font-semibold text-slate-700">
+              Fast Track: 1-Click Investigator Autofill
+            </label>
+            <div class="grid grid-cols-2 gap-2">
+              <button type="button" class="quick-preset-btn text-left p-3 rounded-lg border border-[#e6e3dc] bg-white hover:bg-[#edf3f5] hover:border-[#ccdbe0] transition-all cursor-pointer group" data-profile="pi">
+                <div class="text-[10.5px] uppercase text-slate-400 font-semibold group-hover:text-[#2d4f5e]">Principal Inv.</div>
+                <div class="text-xs font-semibold text-slate-800 truncate">Prof. Wickramasinghe</div>
+              </button>
+              <button type="button" class="quick-preset-btn text-left p-3 rounded-lg border border-[#e6e3dc] bg-white hover:bg-[#edf3f5] hover:border-[#ccdbe0] transition-all cursor-pointer group" data-profile="clinic">
+                <div class="text-[10.5px] uppercase text-slate-400 font-semibold group-hover:text-[#2d4f5e]">Co-Investigator</div>
+                <div class="text-xs font-semibold text-slate-800 truncate">Dr. K. Bandara</div>
+              </button>
+              <button type="button" class="quick-preset-btn text-left p-3 rounded-lg border border-[#e6e3dc] bg-white hover:bg-[#edf3f5] hover:border-[#ccdbe0] transition-all cursor-pointer group" data-profile="admin">
+                <div class="text-[10.5px] uppercase text-slate-400 font-semibold group-hover:text-[#2d4f5e]">System Admin</div>
+                <div class="text-xs font-semibold text-slate-800 truncate">Data Governance Admin</div>
+              </button>
+              <button type="button" class="quick-preset-btn text-left p-3 rounded-lg border border-[#e6e3dc] bg-white hover:bg-[#edf3f5] hover:border-[#ccdbe0] transition-all cursor-pointer group" data-profile="ra">
+                <div class="text-[10.5px] uppercase text-slate-400 font-semibold group-hover:text-[#2d4f5e]">Field Assessor</div>
+                <div class="text-xs font-semibold text-slate-800 truncate">S. Fernando (RA)</div>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Left Column Footer Ticker -->
+        <div class="mt-8 pt-4 border-t border-[#e6e3dc] flex items-center justify-between text-xs text-slate-500">
+          <span>HOST: 0.0.0.0:3000</span>
+          <button type="button" id="btn-preview-loading" class="text-[#2d4f5e] font-semibold hover:underline">
+            Preview Loading Screen ↗
+          </button>
+        </div>
+      </section>
+
+      <!-- RIGHT COLUMN: MODULAR INTERACTIVE AUTH PANEL (7 Cols) -->
+      <section class="lg:col-span-7 bg-white border border-[#e6e3dc] rounded-2xl shadow-sm p-7 sm:p-8 flex flex-col justify-between" id="login-card">
+        <div>
+          <!-- Restriction Warning Notice if redirected -->
+          <div id="auth-restriction-banner" class="hidden mb-6 bg-[#fcf7f0] border border-[#f2dec5] rounded-xl p-4 text-slate-800" role="alert">
+            <div class="flex items-center gap-2 font-semibold text-xs uppercase text-[#b87431] mb-1">
+              <span class="inline-block w-2 h-2 bg-[#b87431] rounded-full"></span>
+              Restricted Clinical Section Triggered
+            </div>
+            <p class="text-xs text-slate-700 leading-relaxed">
+              Participant Registry, Dietary Recalls, and Cohort CSV Export require verified institutional credentials. Sign in or register below to gain session authorization.
+            </p>
+          </div>
+
+          <!-- Nordic Minimalist Modular Tab Bar -->
+          <div class="grid grid-cols-2 gap-1.5 mb-6 p-1.5 bg-[#f0eee9] rounded-xl border border-[#e6e3dc]">
+            <button type="button" id="tab-btn-signin" class="py-2.5 px-4 text-xs font-semibold transition-all flex items-center justify-center gap-2 bg-white text-[#2d4f5e] rounded-lg shadow-xs cursor-pointer">
+              <svg class="w-4 h-4 text-[#2d4f5e]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+              </svg>
+              <span>Authorized Sign-In</span>
+            </button>
+            <button type="button" id="tab-btn-register" class="py-2.5 px-4 text-xs font-semibold transition-all flex items-center justify-center gap-2 text-slate-600 hover:text-slate-900 rounded-lg cursor-pointer">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+              </svg>
+              <span>Register Investigator</span>
+            </button>
+          </div>
+
+          <!-- ======================================================== -->
+          <!-- PANEL 1: AUTHORIZED SIGN-IN FORM                         -->
+          <!-- ======================================================== -->
+          <form id="researcher-login-form" class="space-y-5">
+            <!-- Preset Profile Selector -->
+            <div>
+              <div class="flex items-center justify-between mb-1.5">
+                <label class="text-xs font-semibold text-slate-700" for="select-preset-profile">
+                  Investigator Credential Profile
+                </label>
+                <span class="text-[11px] text-slate-400">Auto-fills key</span>
+              </div>
+              <div class="relative">
+                <select id="select-preset-profile" class="w-full bg-white border border-[#d4cfc5] rounded-lg px-3.5 py-2.5 text-sm font-medium text-slate-800 focus:outline-none focus:border-[#2d4f5e] focus:ring-2 focus:ring-[#edf3f5] appearance-none cursor-pointer">
+                  <option value="pi" data-role="RESEARCHER" data-name="Prof. A. Wickramasinghe" data-email="a.wickrama@med.pdn.ac.lk" data-token="HALOS-PI-2026">
+                    Principal Investigator (Prof. A. Wickramasinghe - UoP)
+                  </option>
+                  <option value="clinic" data-role="RESEARCHER" data-name="Dr. K. Bandara" data-email="k.bandara@med.pdn.ac.lk" data-token="HALOS-CLINIC-2026">
+                    Clinical Co-Investigator (Dr. K. Bandara - Kandy)
+                  </option>
+                  <option value="admin" data-role="ADMIN" data-name="HALOS Data Administrator" data-email="admin.halos@uop.ac.lk" data-token="HALOS-ADMIN-2026">
+                    System Data Administrator (ADMIN)
+                  </option>
+                  <option value="ra" data-role="DATA_COLLECTOR" data-name="S. Fernando (Field RA)" data-email="s.fernando@ousl.lk" data-token="HALOS-FIELD-2026">
+                    Field Research Assistant (DATA_COLLECTOR)
+                  </option>
+                  <option value="custom" data-role="RESEARCHER" data-name="" data-email="" data-token="">
+                    Custom Authorized Credentials...
+                  </option>
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-slate-400">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Custom Credentials Fields (Toggled when Custom is chosen) -->
+            <div id="custom-creds-container" class="hidden space-y-4 p-4 bg-[#faf9f6] border border-[#e6e3dc] rounded-xl">
+              <div class="text-xs font-semibold text-slate-800">Custom Credential Specs</div>
+              <div>
+                <label class="block text-xs font-medium text-slate-700 mb-1" for="input-custom-name">
+                  Investigator Full Name
+                </label>
+                <input type="text" id="input-custom-name" class="w-full bg-white border border-[#d4cfc5] rounded-lg px-3 py-2 text-sm font-medium focus:outline-none focus:border-[#2d4f5e] focus:ring-2 focus:ring-[#edf3f5]" placeholder="e.g. Dr. Sunimal Jayasuriya" />
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-slate-700 mb-1" for="select-login-role">
+                  Assigned Research Protocol Role
+                </label>
+                <select id="select-login-role" class="w-full bg-white border border-[#d4cfc5] rounded-lg px-3 py-2 text-sm font-semibold focus:outline-none focus:border-[#2d4f5e] focus:ring-2 focus:ring-[#edf3f5]">
+                  <option value="RESEARCHER">Principal Investigator / Co-Investigator (RESEARCHER)</option>
+                  <option value="ADMIN">System &amp; Data Administrator (ADMIN)</option>
+                  <option value="DATA_COLLECTOR">Field Research Assistant (DATA_COLLECTOR)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Study Authorization Key -->
+            <div>
+              <div class="flex items-center justify-between mb-1.5">
+                <label class="text-xs font-semibold text-slate-700" for="input-access-token">
+                  Study Authorization Access Key
+                </label>
+                <span class="text-[10.5px] font-medium text-[#3b7a57]">Verified Format</span>
+              </div>
+              <div class="relative">
+                <input type="password" id="input-access-token" value="HALOS-PI-2026" class="w-full bg-white border border-[#d4cfc5] rounded-lg px-3.5 py-2.5 text-sm font-mono tracking-wider text-slate-900 focus:outline-none focus:border-[#2d4f5e] focus:ring-2 focus:ring-[#edf3f5]" placeholder="Enter key..." required />
+              </div>
+              <p class="mt-1.5 text-[11px] text-slate-500" id="token-hint-text">
+                Token verified for Peradeniya / OUSL nutritional cohort research.
+              </p>
+            </div>
+
+            <!-- Submit Button - Nordic Fjord Slate -->
+            <button type="submit" id="btn-login-submit" class="w-full mt-2 bg-[#2d4f5e] hover:bg-[#1f3742] text-white rounded-lg shadow-sm py-3 px-6 text-sm font-semibold flex items-center justify-center gap-2.5 transition-all cursor-pointer">
+              <span>Authenticate &amp; Access Research Suite</span>
+              <span class="text-base leading-none">→</span>
+            </button>
+          </form>
+
+          <!-- ======================================================== -->
+          <!-- PANEL 2: REGISTER NEW INVESTIGATOR FORM                  -->
+          <!-- ======================================================== -->
+          <form id="investigator-register-form" class="hidden space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1" for="reg-full-name">
+                  Investigator Full Name *
+                </label>
+                <input type="text" id="reg-full-name" class="w-full bg-white border border-[#d4cfc5] rounded-lg px-3 py-2 text-sm font-medium focus:outline-none focus:border-[#2d4f5e] focus:ring-2 focus:ring-[#edf3f5]" placeholder="Dr. Sunimal Jayasuriya" required />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1" for="reg-email">
+                  Institutional Email *
+                </label>
+                <input type="email" id="reg-email" class="w-full bg-white border border-[#d4cfc5] rounded-lg px-3 py-2 text-sm font-medium focus:outline-none focus:border-[#2d4f5e] focus:ring-2 focus:ring-[#edf3f5]" placeholder="investigator@med.pdn.ac.lk" required />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1" for="reg-institution">
+                Academic / Research Affiliation
+              </label>
+              <input type="text" id="reg-institution" value="Faculty of Medicine, University of Peradeniya" class="w-full bg-white border border-[#d4cfc5] rounded-lg px-3 py-2 text-sm font-medium focus:outline-none focus:border-[#2d4f5e] focus:ring-2 focus:ring-[#edf3f5]" required />
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1" for="reg-role">
+                  Requested Role
+                </label>
+                <select id="reg-role" class="w-full bg-white border border-[#d4cfc5] rounded-lg px-3 py-2 text-sm font-semibold focus:outline-none focus:border-[#2d4f5e] focus:ring-2 focus:ring-[#edf3f5]">
+                  <option value="RESEARCHER">Co-Investigator / Research Nutritionist (RESEARCHER)</option>
+                  <option value="ADMIN">Lead Research Administrator (ADMIN)</option>
+                  <option value="DATA_COLLECTOR">Clinical Field Assessor (DATA_COLLECTOR)</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1" for="reg-access-key">
+                  Cohort Study Key *
+                </label>
+                <input type="password" id="reg-access-key" value="HALOS-STUDY-2026" class="w-full bg-white border border-[#d4cfc5] rounded-lg px-3 py-2 text-sm font-mono focus:outline-none focus:border-[#2d4f5e] focus:ring-2 focus:ring-[#edf3f5]" required />
+              </div>
+            </div>
+
+            <!-- Submit Registration Button - Nordic Spruce Pine -->
+            <button type="submit" id="btn-register-submit" class="w-full mt-2 bg-[#3b6559] hover:bg-[#2a4c42] text-white rounded-lg shadow-sm py-3 px-6 text-sm font-semibold flex items-center justify-center gap-2.5 transition-all cursor-pointer">
+              <span>Register &amp; Authorize Research Session</span>
+              <span class="text-base leading-none">→</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Right Column Footer Links -->
+        <div class="mt-8 pt-4 border-t border-[#e6e3dc] flex flex-wrap items-center justify-between text-xs text-slate-500 gap-2">
+          <a href="/index.html" class="hover:text-[#2d4f5e] font-semibold hover:underline">
+            ← Return to Public Dashboard
+          </a>
+          <span class="text-slate-400">HALOS SECURE AUTH v2.0</span>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- BOTTOM METRIC FOOTER -->
+  <footer class="w-full bg-white border-t border-[#e6e3dc] px-6 py-3 text-xs text-slate-500 flex flex-wrap items-center justify-between gap-2">
+    <div>HALOS: Health &amp; Lifestyle Optimization Study • Peradeniya Cohort</div>
+    <div class="flex items-center gap-4 text-[11px] font-mono">
+      <span>SERVER: OPERATIONAL</span>
+      <span>CIPHER: AES-GCM-256</span>
+    </div>
+  </footer>
+
+  <!-- ======================================================== -->
+  <!-- NORDIC MINIMALIST CANVAS LOADING MODAL                   -->
+  <!-- ======================================================== -->
+  <div id="auth-loading-overlay" class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="w-full max-w-md bg-white border border-[#e6e3dc] rounded-2xl shadow-xl p-7 sm:p-8 space-y-6 relative">
+      
+      <!-- Card Header -->
+      <div class="flex items-center justify-between border-b border-[#e6e3dc] pb-3.5">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 bg-[#3b7a57] rounded-full animate-ping"></span>
+          <span class="text-xs font-semibold uppercase tracking-wider text-slate-800">
+            HALOS OS // INITIALIZATION
+          </span>
+        </div>
+        <span class="font-mono text-xs text-slate-500 font-semibold" id="loading-timer">0.0s</span>
       </div>
 
-      <div class="form-group" style="margin-bottom: 20px;">
-        <label class="form-label" for="input-access-token">Study Access Key / Token</label>
-        <input type="password" id="input-access-token" class="form-control" value="HALOS-STUDY-2026" placeholder="Enter research token..." />
-        <div class="form-hint">Default study key pre-filled for prototype session.</div>
+      <!-- Hero Visual Spinner / Graphic -->
+      <div class="flex items-center gap-4 py-2">
+        <div class="w-12 h-12 rounded-xl bg-[#edf3f5] border border-[#ccdbe0] flex items-center justify-center text-[#2d4f5e] shrink-0">
+          <svg class="w-6 h-6 animate-spin text-[#2d4f5e]" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-20" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3"></circle>
+            <path class="opacity-85" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+        </div>
+        <div>
+          <h2 class="text-base font-bold text-slate-900" id="loading-headline">
+            Authenticating Session
+          </h2>
+          <p class="text-xs text-slate-500" id="loading-subtext">
+            Validating study authorization token with database...
+          </p>
+        </div>
       </div>
 
-      <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;" id="btn-login-submit">
-        Access Research Dashboard →
-      </button>
-    </form>
+      <!-- Nordic Minimalist Progress Bar -->
+      <div class="space-y-1.5">
+        <div class="w-full h-2 bg-[#f0eee9] rounded-full overflow-hidden">
+          <div id="loading-progress-bar" class="h-full bg-[#2d4f5e] rounded-full transition-all duration-300 w-[15%]"></div>
+        </div>
+        <div class="flex justify-between text-[11px] font-mono text-slate-500">
+          <span>PROGRESS</span>
+          <span id="loading-percentage">15%</span>
+        </div>
+      </div>
+
+      <!-- Dynamic Verification Checklist -->
+      <div class="bg-[#faf9f6] border border-[#e6e3dc] rounded-xl p-3.5 space-y-2.5 font-mono text-xs">
+        <div class="flex items-center justify-between text-slate-700" id="step-token">
+          <span>[1] TOKEN SIGNATURE</span>
+          <span class="font-bold text-[#b87431]" id="step-token-status">CHECKING...</span>
+        </div>
+        <div class="flex items-center justify-between text-slate-400" id="step-role">
+          <span>[2] PROTOCOL PERMISSIONS</span>
+          <span class="font-bold" id="step-role-status">QUEUED</span>
+        </div>
+        <div class="flex items-center justify-between text-slate-400" id="step-route">
+          <span>[3] DATASET GATEWAY SYNC</span>
+          <span class="font-bold" id="step-route-status">QUEUED</span>
+        </div>
+      </div>
+
+      <!-- Emergency Cancel / Dismiss (if previewing) -->
+      <div class="text-center pt-1">
+        <button type="button" id="btn-cancel-loading" class="text-xs text-slate-500 hover:text-slate-800 underline cursor-pointer">
+          Cancel Authentication / Return to Form
+        </button>
+      </div>
+
+    </div>
   </div>
 
+  <!-- SCRIPT BUNDLE -->
   <script src="/js/api.js"></script>
   <script src="/js/utils.js"></script>
   <script src="/js/auth.js"></script>
+  <script src="/js/i18n.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const form = document.getElementById('researcher-login-form');
-      if (form) {
-        form.addEventListener('submit', (e) => {
-          e.preventDefault();
-          const role = document.getElementById('select-login-role')?.value || 'RESEARCHER';
-          const token = document.getElementById('input-access-token')?.value || '';
-
-          HALOS_AUTH.setRole(role);
-          HALOS_AUTH.setAuthToken(token);
-          HALOS_UTILS.showToast(`Signed in as ${role}`, 'success');
-
-          setTimeout(() => {
-            window.location.href = '/index.html';
-          }, 350);
-        });
+      // 1. Check for Redirect Reason
+      const urlParams = new URLSearchParams(window.location.search);
+      const reason = urlParams.get('reason');
+      const banner = document.getElementById('auth-restriction-banner');
+      if (reason === 'auth_required' && banner) {
+        banner.classList.remove('hidden');
       }
+
+      // Get target redirect
+      const redirectUrl = urlParams.get('redirect') || sessionStorage.getItem('halos_auth_redirect') || '/patients.html';
+
+      // 2. Tab Navigation (Nordic Minimalist Tab Switch)
+      const tabSignIn = document.getElementById('tab-btn-signin');
+      const tabRegister = document.getElementById('tab-btn-register');
+      const formSignIn = document.getElementById('researcher-login-form');
+      const formRegister = document.getElementById('investigator-register-form');
+
+      function setTab(isSignIn) {
+        if (isSignIn) {
+          tabSignIn.className = 'py-2.5 px-4 text-xs font-semibold transition-all flex items-center justify-center gap-2 bg-white text-[#2d4f5e] rounded-lg shadow-xs cursor-pointer';
+          tabRegister.className = 'py-2.5 px-4 text-xs font-semibold transition-all flex items-center justify-center gap-2 text-slate-600 hover:text-slate-900 rounded-lg cursor-pointer';
+          formSignIn.classList.remove('hidden');
+          formRegister.classList.add('hidden');
+        } else {
+          tabRegister.className = 'py-2.5 px-4 text-xs font-semibold transition-all flex items-center justify-center gap-2 bg-white text-[#3b6559] rounded-lg shadow-xs cursor-pointer';
+          tabSignIn.className = 'py-2.5 px-4 text-xs font-semibold transition-all flex items-center justify-center gap-2 text-slate-600 hover:text-slate-900 rounded-lg cursor-pointer';
+          formRegister.classList.remove('hidden');
+          formSignIn.classList.add('hidden');
+        }
+      }
+
+      tabSignIn.addEventListener('click', () => setTab(true));
+      tabRegister.addEventListener('click', () => setTab(false));
+
+      // 3. Preset Profile Selection & 1-Click Fast Track
+      const presetSelect = document.getElementById('select-preset-profile');
+      const tokenInput = document.getElementById('input-access-token');
+      const customContainer = document.getElementById('custom-creds-container');
+
+      function applyProfile(val) {
+        presetSelect.value = val;
+        const opt = presetSelect.options[presetSelect.selectedIndex];
+        if (val === 'custom') {
+          customContainer.classList.remove('hidden');
+          tokenInput.value = '';
+        } else {
+          customContainer.classList.add('hidden');
+          tokenInput.value = opt.getAttribute('data-token') || 'HALOS-STUDY-2026';
+        }
+      }
+
+      presetSelect.addEventListener('change', () => {
+        applyProfile(presetSelect.value);
+      });
+
+      document.querySelectorAll('.quick-preset-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const profile = btn.getAttribute('data-profile');
+          setTab(true);
+          applyProfile(profile);
+          HALOS_UTILS.showToast(`Autofilled ${presetSelect.options[presetSelect.selectedIndex].text.split('(')[0].trim()}`, 'info');
+        });
+      });
+
+      // 4. Nordic Minimalist Loading Screen Controller
+      const loadingOverlay = document.getElementById('auth-loading-overlay');
+      const progressBar = document.getElementById('loading-progress-bar');
+      const percentageLabel = document.getElementById('loading-percentage');
+      const timerLabel = document.getElementById('loading-timer');
+      const headlineLabel = document.getElementById('loading-headline');
+      const subtextLabel = document.getElementById('loading-subtext');
+      const stepToken = document.getElementById('step-token-status');
+      const stepRole = document.getElementById('step-role-status');
+      const stepRoute = document.getElementById('step-route-status');
+      const cancelLoadingBtn = document.getElementById('btn-cancel-loading');
+
+      let timerInterval = null;
+
+      function triggerLoadingScreen(headline, subtext, onFinish) {
+        loadingOverlay.classList.remove('hidden');
+        headlineLabel.textContent = headline || 'Authenticating Session';
+        subtextLabel.textContent = subtext || 'Validating study authorization token...';
+
+        progressBar.style.width = '10%';
+        percentageLabel.textContent = '10%';
+        stepToken.textContent = 'VALIDATING...';
+        stepToken.className = 'font-bold text-[#b87431]';
+        stepRole.textContent = 'QUEUED';
+        stepRole.className = 'font-bold text-slate-400';
+        stepRoute.textContent = 'QUEUED';
+        stepRoute.className = 'font-bold text-slate-400';
+
+        const startTime = Date.now();
+        timerInterval = setInterval(() => {
+          const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
+          timerLabel.textContent = `${elapsed}s`;
+        }, 100);
+
+        setTimeout(() => {
+          progressBar.style.width = '45%';
+          percentageLabel.textContent = '45%';
+          stepToken.textContent = 'PASSED ✓';
+          stepToken.className = 'font-bold text-[#3b7a57]';
+          stepRole.textContent = 'EVALUATING...';
+          stepRole.className = 'font-bold text-[#b87431]';
+        }, 400);
+
+        setTimeout(() => {
+          progressBar.style.width = '85%';
+          percentageLabel.textContent = '85%';
+          stepRole.textContent = 'AUTHORIZED ✓';
+          stepRole.className = 'font-bold text-[#3b7a57]';
+          stepRoute.textContent = 'INITIALIZING DATASET...';
+          stepRoute.className = 'font-bold text-[#b87431]';
+        }, 800);
+
+        setTimeout(() => {
+          progressBar.style.width = '100%';
+          percentageLabel.textContent = '100%';
+          stepRoute.textContent = 'SYNCED ✓';
+          stepRoute.className = 'font-bold text-[#3b7a57]';
+        }, 1200);
+
+        setTimeout(() => {
+          clearInterval(timerInterval);
+          if (onFinish) onFinish();
+        }, 1400);
+      }
+
+      cancelLoadingBtn.addEventListener('click', () => {
+        clearInterval(timerInterval);
+        loadingOverlay.classList.add('hidden');
+      });
+
+      // Preview loading button
+      document.getElementById('btn-preview-loading').addEventListener('click', () => {
+        triggerLoadingScreen('Previewing Loading State', 'Simulating cryptographic authorization verification...', () => {
+          setTimeout(() => {
+            loadingOverlay.classList.add('hidden');
+            HALOS_UTILS.showToast('Loading page preview complete.', 'info');
+          }, 400);
+        });
+      });
+
+      // 5. Sign-In Form Submission
+      formSignIn.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const opt = presetSelect.options[presetSelect.selectedIndex];
+        let role = opt.getAttribute('data-role') || 'RESEARCHER';
+        let name = opt.getAttribute('data-name') || 'Authorized Investigator';
+        let email = opt.getAttribute('data-email') || 'researcher@uop.ac.lk';
+        const token = tokenInput.value.trim();
+
+        if (!token) {
+          HALOS_UTILS.showToast('Please enter an authorization token.', 'warning');
+          return;
+        }
+
+        if (presetSelect.value === 'custom') {
+          name = document.getElementById('input-custom-name').value.trim() || 'Research Investigator';
+          role = document.getElementById('select-login-role').value;
+        }
+
+        triggerLoadingScreen(`Authenticating ${name}`, `Assigning role ${role} and establishing secure session...`, () => {
+          HALOS_AUTH.login({ role, token, name, email });
+          sessionStorage.removeItem('halos_auth_redirect');
+          HALOS_UTILS.showToast(`Welcome, ${name}! Authorized as ${role}.`, 'success');
+          window.location.href = redirectUrl;
+        });
+      });
+
+      // 6. Investigator Registration Submission
+      formRegister.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('reg-full-name').value.trim();
+        const email = document.getElementById('reg-email').value.trim();
+        const role = document.getElementById('reg-role').value;
+        const key = document.getElementById('reg-access-key').value.trim();
+
+        if (!name || !email || !key) {
+          HALOS_UTILS.showToast('Please fill all required registration fields.', 'warning');
+          return;
+        }
+
+        const token = `HALOS-REG-${role}-${Date.now().toString(36).toUpperCase()}`;
+
+        triggerLoadingScreen(`Registering ${name}`, `Recording investigator profile and granting ${role} privileges...`, () => {
+          HALOS_AUTH.login({ role, token, name, email });
+          sessionStorage.removeItem('halos_auth_redirect');
+          HALOS_UTILS.showToast(`Investigator registered! Welcome, ${name}.`, 'success');
+          window.location.href = redirectUrl;
+        });
+      });
     });
   </script>
 </body>

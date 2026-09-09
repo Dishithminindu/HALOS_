@@ -3,6 +3,28 @@
  */
 
 document.addEventListener('DOMContentLoaded', async () => {
+  // Enforce strict access control for Research & Data section
+  if (!HALOS_AUTH.requireAuth(['RESEARCHER', 'ADMIN'])) {
+    const contentBody = document.querySelector('.content-body');
+    if (contentBody) {
+      contentBody.innerHTML = `
+        <div class="card" style="text-align: center; padding: 48px 24px; max-width: 600px; margin: 40px auto;">
+          <div style="width: 56px; height: 56px; border-radius: 50%; background: #fee2e2; color: #dc2626; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px auto;">
+            <svg style="width: 28px; height: 28px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          </div>
+          <h3 style="font-size: 20px; font-weight: 800; color: var(--text-main); margin-bottom: 8px;">Restricted Research Analytics</h3>
+          <p style="color: var(--text-muted); font-size: 14px; line-height: 1.5; margin-bottom: 20px;">
+            Scientific cohort benchmarks, sodium intake distributions, and de-identified CSV exports are restricted to authenticated study researchers and administrators.
+          </p>
+          <a href="/login.html?redirect=/research-dashboard.html&reason=auth_required" class="btn btn-primary btn-lg">
+            Authorized Investigator Sign-In →
+          </a>
+        </div>
+      `;
+    }
+    return;
+  }
+
   HALOS_UTILS.showLoading('Loading scientific cohort metrics and model metadata...');
 
   const btnExportCsv = document.getElementById('btn-export-research-csv');

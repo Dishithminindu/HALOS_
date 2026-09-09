@@ -11,13 +11,13 @@ const HALOS_API = (function() {
       'Content-Type': 'application/json'
     };
 
+    const isAuth = localStorage.getItem('halos_is_authenticated') === 'true';
     const token = localStorage.getItem('halos_auth_token');
-    if (token) {
+    if (isAuth && token) {
       headers['Authorization'] = `Bearer ${token}`;
+      const role = localStorage.getItem('halos_user_role') || 'RESEARCHER';
+      headers['X-HALOS-Role'] = role;
     }
-
-    const role = localStorage.getItem('halos_user_role') || 'RESEARCHER';
-    headers['X-HALOS-Role'] = role;
 
     return headers;
   }

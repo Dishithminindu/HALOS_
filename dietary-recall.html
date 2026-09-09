@@ -86,8 +86,11 @@
         </div>
 
         <div class="topbar-right">
+          <!-- Language Switcher Mount -->
+          <div class="halos-lang-mount"></div>
+
           <div class="participant-indicator">
-            <span>Participant:</span>
+            <span data-i18n="lbl_participant_prefix">Participant:</span>
             <strong id="recall-study-id">—</strong>
           </div>
         </div>
@@ -117,11 +120,62 @@
           </div>
         </div>
 
+        <!-- SOP 5-Step Multiple-Pass Protocol Banner -->
+        <div class="sop-banner">
+          <h3>
+            <svg style="width: 20px; height: 20px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+            Standard Operating Procedure: 24-Hour Dietary Recall (5-Step Multiple-Pass Method)
+          </h3>
+          <p>
+            Standardized interview protocol capturing all foods and beverages consumed over the preceding 24 hours (midnight to midnight), adapted for Sri Lankan dietary and culinary practices.
+          </p>
+
+          <div class="sop-steps-grid" id="sop-steps-bar">
+            <div class="sop-step-box active" data-step="1">
+              <div class="sop-num">Pass 1</div>
+              <div class="sop-name">Quick List</div>
+            </div>
+            <div class="sop-step-box" data-step="2">
+              <div class="sop-num">Pass 2</div>
+              <div class="sop-name">Forgotten Foods</div>
+            </div>
+            <div class="sop-step-box" data-step="3">
+              <div class="sop-num">Pass 3</div>
+              <div class="sop-name">Time & Occasion</div>
+            </div>
+            <div class="sop-step-box" data-step="4">
+              <div class="sop-num">Pass 4</div>
+              <div class="sop-name">Detail & Amounts</div>
+            </div>
+            <div class="sop-step-box" data-step="5">
+              <div class="sop-num">Pass 5</div>
+              <div class="sop-name">Final Review</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Forgotten Foods & Probe Guidance (Visible/Collapsible) -->
+        <div class="probe-card" id="sop-probe-guidance">
+          <h4>
+            <span>🔍 Sri Lankan Cultural Probe Prompts (Pass 2 & 5)</span>
+          </h4>
+          <div class="probe-grid">
+            <div class="probe-item">🧂 Table salt or raw salt added to rice / plate</div>
+            <div class="probe-item">🐟 Sprats / Dried fish temper (Karawala)</div>
+            <div class="probe-item">🌶️ Lunu miris, Katta sambol, Pol sambol</div>
+            <div class="probe-item">🫓 Fried Papadam & Savoury bites (Murukku, Mixture)</div>
+            <div class="probe-item">🥐 Short eats (Fish roll, Samosa, Vegetable roti, Patty)</div>
+            <div class="probe-item">🍲 Coconut milk gravy (Hodi) poured over rice</div>
+            <div class="probe-item">🍋 Lime / Mango / Ambarella pickle (Achcharu)</div>
+            <div class="probe-item">🍜 Instant noodle flavour sachets & broth</div>
+          </div>
+        </div>
+
         <!-- 24-hr Recall Live Accumulator Header Card -->
         <div class="card" style="margin-bottom: 24px; background: linear-gradient(135deg, #ffffff 0%, var(--bg-surface-subtle) 100%);">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
             <div>
-              <span class="stat-label">24-Hour Cumulative Intake</span>
+              <span class="stat-label">24-Hour Cumulative Measured Intake</span>
               <div style="display: flex; align-items: baseline; gap: 16px; margin-top: 4px;">
                 <div>
                   <span style="font-size: 13px; color: var(--text-muted);">Sodium:</span>
@@ -131,40 +185,75 @@
                   <span style="font-size: 13px; color: var(--text-muted);">Estimated Salt:</span>
                   <strong style="font-size: 26px; color: var(--secondary);" id="summary-total-salt">0.0 g</strong>
                 </div>
+                <div id="salt-target-pill" style="font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 12px; background: #e0f2fe; color: #0369a1;">
+                  WHO Limit: 5.0 g/day
+                </div>
               </div>
             </div>
 
             <div style="display: flex; align-items: center; gap: 12px;">
               <span class="badge badge-neutral" id="summary-total-items">0 items</span>
               <span style="font-size: 11px; color: var(--text-muted); max-width: 220px;">
-                Conversion formula: <code>salt_g = (sodium_mg × 2.5) / 1000</code>
+                Laboratory standard formula: <code>salt_g = (sodium_mg × 2.5) / 1000</code>
               </span>
             </div>
           </div>
         </div>
 
         <!-- Meal Selection Navigation Tabs -->
-        <div style="display: flex; gap: 8px; overflow-x: auto; margin-bottom: 20px; padding-bottom: 4px;">
+        <div style="display: flex; gap: 8px; overflow-x: auto; margin-bottom: 16px; padding-bottom: 4px;">
+          <button class="btn btn-secondary meal-tab-btn" data-meal="EARLY_MORNING">🌅 Bed Tea / Early Drink</button>
           <button class="btn btn-secondary meal-tab-btn active" data-meal="BREAKFAST">🍳 Breakfast</button>
-          <button class="btn btn-secondary meal-tab-btn" data-meal="MORNING_SNACK">☕ Morning Snack</button>
+          <button class="btn btn-secondary meal-tab-btn" data-meal="MID_MORNING">☕ Mid-Morning Snack</button>
           <button class="btn btn-secondary meal-tab-btn" data-meal="LUNCH">🍛 Lunch</button>
-          <button class="btn btn-secondary meal-tab-btn" data-meal="AFTERNOON_SNACK">🫖 Afternoon Snack</button>
-          <button class="btn btn-secondary meal-tab-btn" data-meal="DINNER">🍽️ Dinner</button>
-          <button class="btn btn-secondary meal-tab-btn" data-meal="EVENING_SNACK">🌙 Evening Snack</button>
+          <button class="btn btn-secondary meal-tab-btn" data-meal="MID_AFTERNOON">🫖 Afternoon Tea / Snack</button>
+          <button class="btn btn-secondary meal-tab-btn" data-meal="DINNER">🍽️ Dinner (Night Meal)</button>
+          <button class="btn btn-secondary meal-tab-btn" data-meal="LATE_NIGHT">🌙 Late Night Snack</button>
+        </div>
+
+        <!-- Meal Occasion Context (Pass 3: Time & Location) -->
+        <div class="card" style="margin-bottom: 20px; padding: 14px 20px; background-color: var(--bg-surface-subtle);">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="font-size: 13px; font-weight: 700; color: var(--text-main);">Current Meal Occasion:</span>
+              <span class="meal-badge" id="active-meal-badge">BREAKFAST</span>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+              <div style="display: flex; align-items: center; gap: 6px;">
+                <label for="input-meal-time" style="font-size: 12px; font-weight: 600;">Time Consumed:</label>
+                <input type="time" id="input-meal-time" class="form-control" style="width: 120px; padding: 6px 10px; font-size: 13px;" value="07:30" />
+              </div>
+
+              <div style="display: flex; align-items: center; gap: 6px;">
+                <label for="select-meal-location" style="font-size: 12px; font-weight: 600;">Location:</label>
+                <select id="select-meal-location" class="form-control" style="width: 170px; padding: 6px 10px; font-size: 13px;">
+                  <option value="Home" selected>Home</option>
+                  <option value="University canteen">University canteen</option>
+                  <option value="Hostel / Hall">Hostel / Hall</option>
+                  <option value="Boarding place">Boarding place</option>
+                  <option value="Restaurant / Kade">Restaurant / Kade</option>
+                  <option value="Bakery">Bakery</option>
+                  <option value="Street food vendor">Street food vendor</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Food Selector Card -->
         <div class="card" style="margin-bottom: 24px;">
           <div class="card-header">
             <div>
-              <h3 class="card-title">Select Food Item to Log</h3>
-              <div class="card-subtitle">Choose from prototype food composition database (demonstration values)</div>
+              <h3 class="card-title">Food Selector & Sri Lankan Composition Database</h3>
+              <div class="card-subtitle">Search, filter by culinary category, and specify exact portion size with household measures</div>
             </div>
           </div>
 
           <!-- Search & Categories -->
           <div class="food-search-bar">
-            <input type="text" id="food-search-input" class="form-control" placeholder="Search foods (e.g. rice, dried fish, dhal curry, instant noodles, papadam)..." />
+            <input type="text" id="food-search-input" class="form-control" placeholder="Search foods (e.g. rice, parippu, pol sambol, karawala, kottu, papadam, lunu miris)..." />
           </div>
 
           <div class="food-category-chips" id="category-chips"></div>
@@ -173,26 +262,68 @@
           <div class="food-picker-grid" id="food-picker-grid"></div>
 
           <!-- Portion & Add Panel -->
-          <div style="margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
-            <div>
-              <div style="font-size: 14px; font-weight: 700; color: var(--text-main);" id="selected-food-name">Please select a food item above</div>
-              <div style="font-size: 12px; color: var(--text-muted);" id="selected-food-meta">Click any card to select standard serving size</div>
+          <div style="margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--border-subtle);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px; margin-bottom: 14px;">
+              <div>
+                <div style="font-size: 15px; font-weight: 700; color: var(--text-main);" id="selected-food-name">Please select a food item above</div>
+                <div style="font-size: 12px; color: var(--text-muted);" id="selected-food-meta">Click any card to select standard serving size</div>
+              </div>
+
+              <!-- Quick Household Measure Reference Buttons -->
+              <div style="display: flex; gap: 6px; flex-wrap: wrap;" id="quick-measure-btns">
+                <button type="button" class="btn btn-secondary btn-sm btn-quick-portion" data-grams="150" data-label="1 Rice Plate / Cup (150g)">1 Rice Cup (150g)</button>
+                <button type="button" class="btn btn-secondary btn-sm btn-quick-portion" data-grams="50" data-label="1 Curry Ladle (50g)">1 Ladle (50g)</button>
+                <button type="button" class="btn btn-secondary btn-sm btn-quick-portion" data-grams="15" data-label="1 Tablespoon (15g)">1 Tbsp (15g)</button>
+                <button type="button" class="btn btn-secondary btn-sm btn-quick-portion" data-grams="5" data-label="1 Teaspoon (5g)">1 Tsp (5g)</button>
+                <button type="button" class="btn btn-secondary btn-sm btn-quick-portion" data-grams="450" data-label="1 Standard Packet (450g)">1 Packet (450g)</button>
+              </div>
             </div>
 
-            <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <label for="input-portion-quantity" style="font-size: 13px; font-weight: 600;">Portion:</label>
-                <input type="number" id="input-portion-quantity" class="form-control" style="width: 100px;" value="100" min="1" max="5000" />
+            <!-- Discretionary Probe Options Checkbox Row -->
+            <div style="background-color: var(--bg-surface-subtle); padding: 12px 16px; border-radius: var(--radius-md); margin-bottom: 16px;">
+              <div style="font-size: 12px; font-weight: 700; color: var(--text-main); margin-bottom: 6px;">
+                Cultural Preparation & Discretionary Salt Probes for this dish:
+              </div>
+              <div style="display: flex; flex-wrap: wrap; gap: 14px; font-size: 12px;">
+                <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+                  <input type="checkbox" id="probe-raw-salt" class="recall-dish-probe" value="RAW_SALT" />
+                  <span>Extra salt added at table</span>
+                </label>
+                <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+                  <input type="checkbox" id="probe-cooking-salt" class="recall-dish-probe" value="COOKING_SALT" checked />
+                  <span>Salt added during cooking</span>
+                </label>
+                <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+                  <input type="checkbox" id="probe-extra-gravy" class="recall-dish-probe" value="EXTRA_GRAVY" />
+                  <span>Extra gravy (Hodi) poured</span>
+                </label>
+                <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+                  <input type="checkbox" id="probe-pickle" class="recall-dish-probe" value="PICKLE" />
+                  <span>Accompanied by pickle / achcharu</span>
+                </label>
+                <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+                  <input type="checkbox" id="probe-chilli-paste" class="recall-dish-probe" value="CHILLI_PASTE" />
+                  <span>Chilli paste / Soya sauce added</span>
+                </label>
+              </div>
+            </div>
+
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <label for="input-portion-quantity" style="font-size: 13px; font-weight: 600;">Portion Size:</label>
+                <input type="number" id="input-portion-quantity" class="form-control" style="width: 110px;" value="100" min="1" max="5000" />
                 <span style="font-size: 12px; color: var(--text-muted);" id="input-portion-unit">grams (g)</span>
               </div>
 
-              <div style="font-size: 13px;">
-                Na: <strong id="preview-item-sodium" style="color: var(--primary);">0 mg</strong> | Salt: <strong id="preview-item-salt" style="color: var(--secondary);">0 g</strong>
-              </div>
+              <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+                <div style="font-size: 13px;">
+                  Estimated Sodium: <strong id="preview-item-sodium" style="color: var(--primary);">0 mg</strong> | Salt: <strong id="preview-item-salt" style="color: var(--secondary);">0 g</strong>
+                </div>
 
-              <button class="btn btn-primary" id="btn-add-food-item" disabled>
-                + Add to Meal
-              </button>
+                <button class="btn btn-primary btn-lg" id="btn-add-food-item" disabled>
+                  + Add Item to Meal Record
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -202,7 +333,7 @@
           <div class="card-header">
             <div>
               <h3 class="card-title">Recorded Items for Selected Meal</h3>
-              <div class="card-subtitle">Items saved in Cloudflare D1 research database</div>
+              <div class="card-subtitle">Items stored in research database for current participant session</div>
             </div>
           </div>
 
@@ -215,7 +346,7 @@
         <div class="form-actions-bar">
           <a href="/assessment.html" class="btn btn-secondary">← Back to Registration</a>
           <a href="/monthly-questionnaire.html" class="btn btn-primary btn-lg" id="btn-proceed-monthly">
-            Proceed to Monthly Questionnaire →
+            Proceed to SIAT Salt Intake Assessment Tool →
           </a>
         </div>
       </main>
@@ -231,6 +362,7 @@
     </div>
   </div>
 
+  <script src="/js/i18n.js"></script>
   <script src="/js/api.js"></script>
   <script src="/js/utils.js"></script>
   <script src="/js/validation.js"></script>

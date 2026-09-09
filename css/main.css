@@ -1,52 +1,66 @@
 /**
  * HALOS v2.0 - Core Design System & Global Styles
- * Clinical research theme: deep blue/teal primary, soft cyan accent, calm neutral canvas.
+ * Nordic Minimalist Canvas Theme:
+ * Alabaster chalk canvas, Nordic Fjord slate blue, pine spruce green,
+ * muted warm birch accents, and organic limestone borders.
  */
 
 :root {
-  /* Primary Color Palette */
-  --primary: #0f4c81;
-  --primary-hover: #0b3a63;
-  --primary-light: #eef5fb;
-  --primary-border: #bfdbfe;
+  /* Nordic Minimalist Canvas Palette */
+  /* Primary: Nordic Fjord Slate - Deep, serene, oceanic */
+  --primary: #2d4f5e;
+  --primary-hover: #1f3742;
+  --primary-light: #edf3f5;
+  --primary-border: #ccdbe0;
   
-  /* Secondary / Accent */
-  --secondary: #0d9488;
-  --secondary-hover: #0f766e;
-  --secondary-light: #f0fdfa;
-  
-  /* Risk & Semantic Colors */
-  --risk-lower: #059669;
-  --risk-lower-bg: #ecfdf5;
-  --risk-lower-border: #a7f3d0;
-  
-  --risk-moderate: #d97706;
-  --risk-moderate-bg: #fffbeb;
-  --risk-moderate-border: #fde68a;
-  
-  --risk-higher: #dc2626;
-  --risk-higher-bg: #fef2f2;
-  --risk-higher-border: #fecaca;
+  /* Secondary / Botanical: Nordic Spruce & Sage Pine */
+  --secondary: #3b6559;
+  --secondary-hover: #2a4c42;
+  --secondary-light: #eef5f2;
+  --secondary-border: #cadcd5;
 
-  --info: #2563eb;
-  --info-bg: #eff6ff;
+  /* Nordic Warm Natural: Birch Wood & Pale Linen */
+  --accent-birch: #b89360;
+  --accent-birch-light: #faf6f0;
+  --accent-birch-border: #ebd9c2;
+  
+  /* Semantic & Risk Indicator Colors (Muted Nordic Nature Tones) */
+  --risk-lower: #3b7a57;             /* Nordic Moss */
+  --risk-lower-bg: #f2f8f4;
+  --risk-lower-border: #cbe6d6;
+  
+  --risk-moderate: #b87431;          /* Nordic Amber Cloudberry */
+  --risk-moderate-bg: #fcf7f0;
+  --risk-moderate-border: #f2dec5;
+  
+  --risk-higher: #b94a48;            /* Nordic Lingonberry Terracotta */
+  --risk-higher-bg: #fcf3f3;
+  --risk-higher-border: #f3d4d4;
 
-  /* Neutrals & Surfaces */
-  --bg-app: #f8fafc;
-  --bg-surface: #ffffff;
-  --bg-surface-subtle: #f1f5f9;
+  --info: #355c7d;
+  --info-bg: #f0f5f9;
+  --info-border: #d2e1ee;
+
+  /* Canvas & Surfaces (Alabaster Chalk + Pure Crisp Paper) */
+  --bg-app: #f6f5f2;                 /* Serene Nordic warm chalk canvas */
+  --bg-surface: #ffffff;             /* Pure crisp studio surface */
+  --bg-surface-subtle: #f0eee9;      /* Muted stone / birch linen */
+  --bg-surface-elevated: #ffffff;
   
-  --text-main: #0f172a;
-  --text-muted: #64748b;
-  --text-light: #94a3b8;
+  /* Charcoal Slate & Stone Typography */
+  --text-main: #1f2937;              /* Deep slate charcoal */
+  --text-muted: #5c6b77;             /* Calm stone grey */
+  --text-light: #8e9ca7;             /* Pale mist granite */
   
-  --border-subtle: #e2e8f0;
-  --border-medium: #cbd5e1;
+  /* Crisp Minimalist Organic Borders */
+  --border-subtle: #e6e3dc;          /* Warm limestone separator */
+  --border-medium: #d4cfc5;
   
-  /* Shadows & Radii */
-  --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.07), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
-  --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.04);
+  /* Soft Ambient Organic Elevation */
+  --shadow-xs: 0 1px 2px rgba(35, 45, 55, 0.03);
+  --shadow-sm: 0 1px 3px rgba(35, 45, 55, 0.04), 0 1px 2px rgba(35, 45, 55, 0.02);
+  --shadow-md: 0 4px 12px -2px rgba(35, 45, 55, 0.05), 0 2px 4px -1px rgba(35, 45, 55, 0.03);
+  --shadow-lg: 0 12px 28px -4px rgba(35, 45, 55, 0.06), 0 4px 8px -2px rgba(35, 45, 55, 0.03);
   
   --radius-sm: 6px;
   --radius-md: 10px;
@@ -54,7 +68,7 @@
   --radius-full: 9999px;
 
   /* Typography */
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Plus Jakarta Sans", "Inter", "Noto Sans Sinhala", "Iskoola Pota", "Noto Sans Tamil", "Latha", "Nirmala UI", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
@@ -80,9 +94,10 @@ html, body {
   display: flex;
   min-height: 100vh;
   width: 100%;
+  background-color: var(--bg-app);
 }
 
-/* Sidebar Navigation */
+/* Sidebar Navigation - Nordic Minimalist */
 .sidebar {
   width: 260px;
   background-color: var(--bg-surface);
@@ -90,14 +105,14 @@ html, body {
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  transition: all 0.25s ease;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 40;
 }
 
 .sidebar-header {
-  padding: 24px 20px 18px;
+  padding: 22px 20px 18px;
   border-bottom: 1px solid var(--border-subtle);
-  background-color: #5fb7c2;
+  background-color: var(--bg-surface);
 }
 
 .brand-logo {
@@ -112,68 +127,69 @@ html, body {
   width: 38px;
   height: 38px;
   border-radius: var(--radius-md);
-  background-color: #512e2e;
-  background: #512e2e;
+  background-color: var(--primary);
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 18px;
-  box-shadow: 0 2px 4px rgba(15, 76, 129, 0.25);
+  font-size: 17px;
+  letter-spacing: -0.5px;
+  box-shadow: 0 2px 8px rgba(45, 79, 94, 0.2);
 }
 
 .brand-info h1 {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
-  letter-spacing: 0.5px;
-  color: var(--primary);
+  letter-spacing: 0.8px;
+  color: var(--text-main);
   line-height: 1.2;
 }
 
 .brand-info p {
-  font-size: 11px;
+  font-size: 10.5px;
   color: var(--text-muted);
   font-weight: 500;
-  letter-spacing: 0.2px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
 }
 
 .sidebar-nav {
-  padding: 18px 12px;
+  padding: 16px 12px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
   flex: 1;
   overflow-y: auto;
-  background-color: #e8e8e8;
+  background-color: var(--bg-surface);
 }
 
 .nav-section-title {
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.6px;
+  letter-spacing: 0.8px;
   color: var(--text-light);
-  padding: 10px 12px 6px;
+  padding: 12px 12px 4px;
 }
 
 .nav-link {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 10px 14px;
+  padding: 9px 12px;
   border-radius: var(--radius-sm);
   color: var(--text-muted);
   text-decoration: none;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 13.5px;
   transition: all 0.15s ease;
 }
 
 .nav-link svg {
-  width: 18px;
-  height: 18px;
-  stroke-width: 2;
+  width: 17px;
+  height: 17px;
+  stroke-width: 1.8;
   color: var(--text-light);
   transition: color 0.15s ease;
 }
@@ -198,7 +214,7 @@ html, body {
 }
 
 .sidebar-footer {
-  padding: 16px 14px;
+  padding: 14px 16px;
   border-top: 1px solid var(--border-subtle);
   background-color: var(--bg-surface-subtle);
 }
@@ -210,11 +226,11 @@ html, body {
 }
 
 .status-dot {
-  width: 10px;
-  height: 10px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
   background-color: var(--risk-lower);
-  box-shadow: 0 0 0 2px #d1fae5;
+  box-shadow: 0 0 0 2px rgba(59, 122, 87, 0.2);
 }
 
 .user-status-text {
@@ -224,7 +240,7 @@ html, body {
 }
 
 .user-status-sub {
-  font-size: 11px;
+  font-size: 10.5px;
   color: var(--text-muted);
 }
 
@@ -235,18 +251,18 @@ html, body {
   flex-direction: column;
   min-width: 0;
   overflow-x: hidden;
-  background-color: #ffffff;
+  background-color: var(--bg-app);
 }
 
-/* Top Navbar */
+/* Top Navbar - Clean Nordic Strip */
 .topbar {
-  height: 64px;
+  height: 60px;
   background-color: var(--bg-surface);
   border-bottom: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 28px;
+  padding: 0 32px;
   position: sticky;
   top: 0;
   z-index: 30;
@@ -259,16 +275,17 @@ html, body {
 }
 
 .page-title {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 700;
   color: var(--text-main);
+  letter-spacing: -0.2px;
 }
 
 .participant-indicator {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 4px 10px;
+  padding: 4px 12px;
   border-radius: var(--radius-full);
   background-color: var(--primary-light);
   color: var(--primary);
@@ -284,14 +301,80 @@ html, body {
   gap: 14px;
 }
 
-/* Content Container */
+/* Multilingual Language Switcher - Nordic Segmented Pill */
+.halos-lang-selector {
+  display: inline-flex;
+  align-items: center;
+}
+
+.lang-pill-group {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--bg-surface-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  padding: 2px;
+  gap: 2px;
+}
+
+.lang-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-full);
+  padding: 4px 10px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  line-height: 1;
+}
+
+.lang-btn:hover {
+  color: var(--text-main);
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.lang-btn.active {
+  background-color: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 1px 3px rgba(45, 79, 94, 0.2);
+}
+
+.lang-code {
+  font-size: 10px;
+  font-weight: 700;
+  opacity: 0.85;
+}
+
+.lang-btn.active .lang-code {
+  opacity: 1;
+}
+
+.lang-text {
+  letter-spacing: 0.1px;
+}
+
+@media (max-width: 640px) {
+  .lang-btn {
+    padding: 4px 6px;
+  }
+  .lang-text {
+    display: none;
+  }
+}
+
+/* Content Container - Open Canvas Layout */
 .content-body {
   flex: 1;
-  padding: 28px;
+  padding: 32px 36px;
   max-width: 1280px;
   width: 100%;
   margin: 0 auto;
-  background-color: #426d8e;
+  background-color: transparent;
 }
 
 /* Breadcrumbs */
@@ -299,14 +382,15 @@ html, body {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 13px;
+  font-size: 12.5px;
   color: var(--text-muted);
-  margin-bottom: 20px;
+  margin-bottom: 22px;
 }
 
 .breadcrumbs a {
   color: var(--text-muted);
   text-decoration: none;
+  transition: color 0.15s ease;
 }
 
 .breadcrumbs a:hover {
@@ -318,15 +402,15 @@ html, body {
   font-weight: 600;
 }
 
-/* Buttons */
+/* Buttons - Refined Nordic Tactility */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 9px 18px;
+  padding: 8px 16px;
   border-radius: var(--radius-sm);
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
@@ -336,7 +420,7 @@ html, body {
 }
 
 .btn:disabled {
-  opacity: 0.6;
+  opacity: 0.55;
   cursor: not-allowed;
   pointer-events: none;
 }
@@ -344,61 +428,65 @@ html, body {
 .btn-primary {
   background-color: var(--primary);
   color: #ffffff;
-  box-shadow: var(--shadow-sm);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-xs);
 }
 
 .btn-primary:hover:not(:disabled) {
   background-color: var(--primary-hover);
+  border-color: var(--primary-hover);
 }
 
 .btn-secondary {
   background-color: var(--bg-surface);
   color: var(--text-main);
   border-color: var(--border-medium);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-xs);
 }
 
 .btn-secondary:hover:not(:disabled) {
   background-color: var(--bg-surface-subtle);
-  border-color: var(--text-light);
+  border-color: var(--text-muted);
 }
 
 .btn-success {
-  background-color: var(--risk-lower);
+  background-color: var(--secondary);
   color: #ffffff;
+  border-color: var(--secondary);
 }
 
 .btn-success:hover:not(:disabled) {
-  background-color: #047857;
+  background-color: var(--secondary-hover);
 }
 
 .btn-danger {
   background-color: var(--risk-higher);
   color: #ffffff;
+  border-color: var(--risk-higher);
 }
 
 .btn-danger:hover:not(:disabled) {
-  background-color: #b91c1c;
+  background-color: #9e3d3b;
 }
 
 .btn-sm {
-  padding: 6px 12px;
+  padding: 5px 11px;
   font-size: 12px;
 }
 
 .btn-lg {
-  padding: 12px 24px;
-  font-size: 15px;
+  padding: 11px 22px;
+  font-size: 14.5px;
 }
 
-/* Badges & Tags */
+/* Badges & Tags - Soft Nordic Mineral Chips */
 .badge {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 4px 10px;
+  padding: 3px 9px;
   border-radius: var(--radius-full);
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 600;
   line-height: 1;
 }
@@ -422,9 +510,9 @@ html, body {
 }
 
 .badge-demo {
-  background-color: #fef3c7;
-  color: #92400e;
-  border: 1px solid #fde68a;
+  background-color: var(--accent-birch-light);
+  color: var(--accent-birch);
+  border: 1px solid var(--accent-birch-border);
 }
 
 .badge-neutral {
@@ -441,38 +529,39 @@ html, body {
   padding: 14px 18px;
   border-radius: var(--radius-md);
   margin-bottom: 20px;
-  font-size: 14px;
+  font-size: 13.5px;
+  line-height: 1.5;
 }
 
 .alert-warning {
   background-color: var(--risk-moderate-bg);
-  color: #92400e;
+  color: var(--risk-moderate);
   border: 1px solid var(--risk-moderate-border);
 }
 
 .alert-info {
   background-color: var(--info-bg);
-  color: #1e40af;
-  border: 1px solid #bfdbfe;
+  color: var(--info);
+  border: 1px solid var(--info-border);
 }
 
 .alert-danger {
   background-color: var(--risk-higher-bg);
-  color: #991b1b;
+  color: var(--risk-higher);
   border: 1px solid var(--risk-higher-border);
 }
 
 .alert-success {
   background-color: var(--risk-lower-bg);
-  color: #065f46;
+  color: var(--risk-lower);
   border: 1px solid var(--risk-lower-border);
 }
 
-/* Loading Overlay & Screen */
+/* Loading Overlay & Screen - Serene Canvas Modal */
 .loading-overlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(15, 23, 42, 0.6);
+  background-color: rgba(31, 41, 55, 0.45);
   backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
@@ -490,8 +579,9 @@ html, body {
 
 .loading-card {
   background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  padding: 32px 40px;
+  padding: 32px 38px;
   text-align: center;
   box-shadow: var(--shadow-lg);
   max-width: 360px;
@@ -499,31 +589,31 @@ html, body {
 }
 
 .spinner-ring {
-  width: 46px;
-  height: 46px;
-  border: 4px solid var(--primary-light);
+  width: 44px;
+  height: 44px;
+  border: 3px solid var(--primary-light);
   border-top-color: var(--primary);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
-  margin: 0 auto 18px;
+  margin: 0 auto 16px;
 }
 
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
 
-/* Splash Loader for First Mount */
+/* Splash Loader for First Mount - Nordic Canvas Style */
 #splash-screen {
   position: fixed;
   inset: 0;
-  background-color: #0b1f3a;
-  color: #ffffff;
+  background-color: #f6f5f2;
+  color: var(--text-main);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  transition: opacity 0.5s ease, visibility 0.5s ease;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
 }
 
 #splash-screen.hidden {
@@ -532,25 +622,26 @@ html, body {
 }
 
 .splash-logo-ring {
-  width: 68px;
-  height: 68px;
-  border: 3px solid rgba(255, 255, 255, 0.15);
-  border-top: 3px solid #14b8a6;
+  width: 58px;
+  height: 58px;
+  border: 3px solid rgba(45, 79, 94, 0.15);
+  border-top: 3px solid var(--primary);
   border-radius: 50%;
-  animation: spin 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
-  margin-bottom: 24px;
+  animation: spin 0.9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  margin-bottom: 20px;
 }
 
 .splash-title {
-  font-size: 26px;
+  font-size: 22px;
   font-weight: 700;
-  letter-spacing: 1px;
-  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+  color: var(--text-main);
+  margin-bottom: 4px;
 }
 
 .splash-subtitle {
-  font-size: 13px;
-  color: #94a3b8;
+  font-size: 12.5px;
+  color: var(--text-muted);
   letter-spacing: 0.4px;
 }
 
@@ -571,18 +662,18 @@ html, body {
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   padding: 12px 18px;
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-md);
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 500;
   min-width: 280px;
   animation: slideUp 0.25s ease;
 }
 
 @keyframes slideUp {
-  from { opacity: 0; transform: translateY(12px); }
+  from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -592,7 +683,7 @@ html, body {
 
 /* Footer */
 .app-footer {
-  padding: 24px 28px;
+  padding: 24px 32px;
   border-top: 1px solid var(--border-subtle);
   background-color: var(--bg-surface);
   text-align: center;
@@ -605,3 +696,4 @@ html, body {
   font-weight: 600;
   color: var(--text-main);
 }
+

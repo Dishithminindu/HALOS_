@@ -86,11 +86,14 @@
         </div>
 
         <div class="topbar-right">
+          <!-- Language Switcher Mount -->
+          <div class="halos-lang-mount"></div>
+
           <div class="participant-indicator">
-            <span>Participant:</span>
+            <span data-i18n="lbl_participant_prefix">Participant:</span>
             <strong id="results-study-id">—</strong>
           </div>
-          <button class="btn btn-secondary btn-sm" id="btn-rerun-prediction">
+          <button class="btn btn-secondary btn-sm" id="btn-rerun-prediction" data-i18n="btn_rerun_assessment">
             ↻ Re-run Assessment
           </button>
         </div>
@@ -263,6 +266,7 @@
     </div>
   </div>
 
+  <script src="/js/i18n.js"></script>
   <script src="/js/api.js"></script>
   <script src="/js/utils.js"></script>
   <script src="/js/validation.js"></script>
