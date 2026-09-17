@@ -29,14 +29,20 @@ export async function createParticipant(db, data) {
   }
 
   const id = `pt_${crypto.randomUUID().replace(/-/g, '').slice(0, 16)}`;
-  const studyId = generateSecureStudyId();
+  const studyId = data.study_id || generateSecureStudyId();
   const now = new Date().toISOString();
   const consentVersion = data.consent_version || 'v2.0-2026';
   const studyGroup = data.study_group || 'GENERAL_POPULATION';
+  const screeningJson = data.screening ? JSON.stringify(data.screening) : null;
+  const sociodemographicsJson = data.sociodemographics ? JSON.stringify(data.sociodemographics) : null;
 
   await db.prepare(`
-    INSERT INTO participants (id, study_id, age, sex, height_cm, weight_kg, consent_version, study_group, created_at, updated_at)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    INSERT INTO participants (
+      id, study_id, age, sex, height_cm, weight_kg,
+      consent_version, study_group, screening_json, sociodemographics_json,
+      created_at, updated_at
+    )
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `).bind(
     id,
     studyId,
@@ -46,6 +52,8 @@ export async function createParticipant(db, data) {
     Number(data.weight_kg),
     consentVersion,
     studyGroup,
+    screeningJson,
+    sociodemographicsJson,
     now,
     now
   ).run();
@@ -66,6 +74,8 @@ export async function createParticipant(db, data) {
       bmi,
       consent_version: consentVersion,
       study_group: studyGroup,
+      screening: data.screening || null,
+      sociodemographics: data.sociodemographics || null,
       created_at: now
     }
   };
@@ -85,7 +95,9 @@ export async function listParticipants(db, limit = 50, offset = 0) {
 
   const results = (rows.results || []).map(p => ({
     ...p,
-    bmi: computeBmi(p.weight_kg, p.height_cm)
+    bmi: computeBmi(p.weight_kg, p.height_cm),
+    screening: p.screening_json ? JSON.parse(p.screening_json) : null,
+    sociodemographics: p.sociodemographics_json ? JSON.parse(p.sociodemographics_json) : null
   }));
 
   return { ok: true, data: results };
@@ -120,9 +132,18 @@ export async function getParticipantById(db, id) {
     data: {
       ...p,
       bmi: computeBmi(p.weight_kg, p.height_cm),
+      screening: p.screening_json ? JSON.parse(p.screening_json) : null,
+      sociodemographics: p.sociodemographics_json ? JSON.parse(p.sociodemographics_json) : null,
       recalls: recalls.results || [],
-      monthly_questionnaire: monthly || null,
-      latest_prediction: latestPrediction || null
+      monthly_questionnaire: monthly ? {
+        ...monthly,
+        answers: JSON.parse(monthly.answers_json || '{}'),
+        feature_vector: JSON.parse(monthly.feature_vector_json || '{}')
+      } : null,
+      latest_prediction: latestPrediction ? {
+        ...latestPrediction,
+        features: JSON.parse(latestPrediction.features_json || '{}')
+      } : null
     }
   };
 }
@@ -134,9 +155,15 @@ export async function updateParticipant(db, id, data) {
   }
 
   const now = new Date().toISOString();
+  const screeningJson = data.screening ? JSON.stringify(data.screening) : null;
+  const sociodemographicsJson = data.sociodemographics ? JSON.stringify(data.sociodemographics) : null;
+
   const res = await db.prepare(`
     UPDATE participants
-    SET age = ?, sex = ?, height_cm = ?, weight_kg = ?, study_group = ?, updated_at = ?
+    SET age = ?, sex = ?, height_cm = ?, weight_kg = ?, study_group = ?,
+        screening_json = COALESCE(?, screening_json),
+        sociodemographics_json = COALESCE(?, sociodemographics_json),
+        updated_at = ?
     WHERE id = ?
   `).bind(
     Number(data.age),
@@ -144,6 +171,8 @@ export async function updateParticipant(db, id, data) {
     Number(data.height_cm),
     Number(data.weight_kg),
     data.study_group || 'GENERAL_POPULATION',
+    screeningJson,
+    sociodemographicsJson,
     now,
     id
   ).run();
@@ -169,6 +198,12 @@ export async function updateParticipant(db, id, data) {
 }
 
 export async function deleteParticipant(db, id) {
+  // 1. Cascading deletes in D1
+  await db.prepare(`DELETE FROM dietary_recalls WHERE participant_id = ?`).bind(id).run();
+  await db.prepare(`DELETE FROM monthly_questionnaires WHERE participant_id = ?`).bind(id).run();
+  await db.prepare(`DELETE FROM predictions WHERE participant_id = ?`).bind(id).run();
+
+  // 2. Delete participant
   const res = await db.prepare(`
     DELETE FROM participants WHERE id = ?
   `).bind(id).run();

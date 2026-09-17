@@ -27,21 +27,33 @@ export async function addRecallEntry(db, participantId, data) {
   // Mathematical formula: salt_g = sodium_mg * 2.5 / 1000
   const saltG = Number(data.salt_g !== undefined ? data.salt_g : ((sodiumMg * 2.5) / 1000.0).toFixed(2));
   const prepNotes = data.preparation_notes || '';
+  const mealTime = data.meal_time || '';
+  const location = data.location || '';
+  const householdMeasure = data.household_measure || '';
+  const discretionaryJson = Array.isArray(data.discretionary_extras) ? JSON.stringify(data.discretionary_extras) : '[]';
 
   await db.prepare(`
-    INSERT INTO dietary_recalls (id, participant_id, meal, food_id, food_name, quantity, unit, sodium_mg, salt_g, preparation_notes, recorded_at)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    INSERT INTO dietary_recalls (
+      id, participant_id, meal, meal_time, location, food_id, food_name,
+      quantity, unit, household_measure, sodium_mg, salt_g, preparation_notes,
+      discretionary_extras_json, recorded_at
+    )
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `).bind(
     id,
     participantId,
     meal,
+    mealTime,
+    location,
     data.food_id,
     data.food_name,
     quantity,
     data.unit || 'g',
+    householdMeasure,
     sodiumMg,
     saltG,
     prepNotes,
+    discretionaryJson,
     now
   ).run();
 
@@ -57,13 +69,17 @@ export async function addRecallEntry(db, participantId, data) {
         id,
         participant_id: participantId,
         meal,
+        meal_time: mealTime,
+        location,
         food_id: data.food_id,
         food_name: data.food_name,
         quantity,
         unit: data.unit || 'g',
+        household_measure: householdMeasure,
         sodium_mg: sodiumMg,
         salt_g: saltG,
         preparation_notes: prepNotes,
+        discretionary_extras: Array.isArray(data.discretionary_extras) ? data.discretionary_extras : [],
         recorded_at: now
       },
       summary: totals
@@ -116,12 +132,17 @@ export async function getRecallEntries(db, participantId) {
     SELECT * FROM dietary_recalls WHERE participant_id = ? ORDER BY recorded_at ASC
   `).bind(participantId).all();
 
+  const entries = (rows.results || []).map(r => ({
+    ...r,
+    discretionary_extras: r.discretionary_extras_json ? JSON.parse(r.discretionary_extras_json) : []
+  }));
+
   const summary = await getParticipantRecallTotals(db, participantId);
 
   return {
     ok: true,
     data: {
-      entries: rows.results || [],
+      entries,
       summary
     }
   };

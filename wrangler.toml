@@ -1,0 +1,22 @@
+# ==============================================================================
+# HALOS v2.0 - Cloudflare Worker Configuration
+# Direct D1 Database Binding ('DB') & Serverless Microservice API
+# ==============================================================================
+
+name = "halos-worker"
+main = "worker/src/index.js"
+compatibility_date = "2024-09-23"
+
+# Cloudflare D1 Database Binding
+# The Worker connects to D1 strictly through env.DB.
+# All INSERT, SELECT, UPDATE, and DELETE operations are performed through env.DB.
+[[d1_databases]]
+binding = "DB"
+database_name = "halos-d1"
+database_id = "halos-d1-production"
+migrations_dir = "worker/migrations"
+
+[vars]
+ENVIRONMENT = "production"
+ML_SERVICE_URL = "http://localhost:8000"
+ALLOW_DEMO_FALLBACK = "true"

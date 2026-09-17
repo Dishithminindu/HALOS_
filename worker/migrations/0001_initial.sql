@@ -13,6 +13,8 @@ CREATE TABLE IF NOT EXISTS participants (
     weight_kg REAL NOT NULL CHECK (weight_kg >= 25 AND weight_kg <= 300),
     consent_version TEXT NOT NULL DEFAULT 'v2.0-2026',
     study_group TEXT DEFAULT 'GENERAL_POPULATION',
+    screening_json TEXT,
+    sociodemographics_json TEXT,
     created_at TEXT NOT NULL DEFAULT (datetime('now')),
     updated_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
@@ -26,13 +28,17 @@ CREATE TABLE IF NOT EXISTS dietary_recalls (
     id TEXT PRIMARY KEY,
     participant_id TEXT NOT NULL,
     meal TEXT NOT NULL CHECK (meal IN ('BREAKFAST', 'MORNING_SNACK', 'LUNCH', 'AFTERNOON_SNACK', 'DINNER', 'EVENING_SNACK')),
+    meal_time TEXT,
+    location TEXT,
     food_id TEXT NOT NULL,
     food_name TEXT NOT NULL,
     quantity REAL NOT NULL CHECK (quantity > 0),
     unit TEXT NOT NULL,
+    household_measure TEXT,
     sodium_mg REAL NOT NULL CHECK (sodium_mg >= 0),
     salt_g REAL NOT NULL CHECK (salt_g >= 0),
     preparation_notes TEXT,
+    discretionary_extras_json TEXT,
     recorded_at TEXT NOT NULL DEFAULT (datetime('now')),
     FOREIGN KEY (participant_id) REFERENCES participants(id) ON DELETE CASCADE
 );

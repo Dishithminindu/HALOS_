@@ -91,7 +91,7 @@ export default {
       // -------------------------------------------------------------
       // PARTICIPANTS ROUTES
       // -------------------------------------------------------------
-      if (path === '/api/participants' && method === 'POST') {
+      if ((path === '/api/participants' || path === '/api/participants/') && method === 'POST') {
         const auth = verifyAuth(request, env, [USER_ROLES.ADMIN, USER_ROLES.RESEARCHER, USER_ROLES.DATA_COLLECTOR]);
         if (!auth.authenticated) return errorResponse(auth.error, auth.code, 403);
 
@@ -100,7 +100,7 @@ export default {
         return jsonResponse(res, res.ok ? 201 : 400);
       }
 
-      if (path === '/api/participants' && method === 'GET') {
+      if ((path === '/api/participants' || path === '/api/participants/') && method === 'GET') {
         const limit = Math.min(100, Math.max(1, parseInt(url.searchParams.get('limit') || '50', 10)));
         const offset = Math.max(0, parseInt(url.searchParams.get('offset') || '0', 10));
         const res = await listParticipants(db, limit, offset);
@@ -108,7 +108,7 @@ export default {
       }
 
       // Participant by ID matching: /api/participants/:id
-      const partMatch = path.match(/^\/api\/participants\/([^/]+)$/);
+      const partMatch = path.match(/^\/api\/participants\/([^/]+)\/?$/);
       if (partMatch) {
         const partId = partMatch[1];
 
@@ -127,7 +127,7 @@ export default {
         }
 
         if (method === 'DELETE') {
-          const auth = verifyAuth(request, env, [USER_ROLES.ADMIN]);
+          const auth = verifyAuth(request, env, [USER_ROLES.ADMIN, USER_ROLES.RESEARCHER]);
           if (!auth.authenticated) return errorResponse(auth.error, auth.code, 403);
 
           const res = await deleteParticipant(db, partId);
@@ -138,7 +138,7 @@ export default {
       // -------------------------------------------------------------
       // 24-HOUR DIETARY RECALL ROUTES
       // -------------------------------------------------------------
-      const recallMatch = path.match(/^\/api\/participants\/([^/]+)\/recall$/);
+      const recallMatch = path.match(/^\/api\/participants\/([^/]+)\/recall\/?$/);
       if (recallMatch) {
         const partId = recallMatch[1];
 
@@ -155,7 +155,7 @@ export default {
       }
 
       // Delete specific recall item: DELETE /api/recall/:id
-      const singleRecallMatch = path.match(/^\/api\/recall\/([^/]+)$/);
+      const singleRecallMatch = path.match(/^\/api\/recall\/([^/]+)\/?$/);
       if (singleRecallMatch && method === 'DELETE') {
         const recId = singleRecallMatch[1];
         const res = await deleteRecallEntry(db, recId);
@@ -165,7 +165,7 @@ export default {
       // -------------------------------------------------------------
       // MONTHLY QUESTIONNAIRE ROUTES
       // -------------------------------------------------------------
-      const monthlyMatch = path.match(/^\/api\/participants\/([^/]+)\/monthly$/);
+      const monthlyMatch = path.match(/^\/api\/participants\/([^/]+)\/monthly\/?$/);
       if (monthlyMatch) {
         const partId = monthlyMatch[1];
 
@@ -184,14 +184,14 @@ export default {
       // -------------------------------------------------------------
       // FEATURE VECTOR & PREDICTION ROUTES
       // -------------------------------------------------------------
-      const featMatch = path.match(/^\/api\/participants\/([^/]+)\/features$/);
+      const featMatch = path.match(/^\/api\/participants\/([^/]+)\/features\/?$/);
       if (featMatch && method === 'GET') {
         const partId = featMatch[1];
         const res = await buildFeatureVector(db, partId);
         return jsonResponse(res, res.ok ? 200 : 404);
       }
 
-      const predMatch = path.match(/^\/api\/participants\/([^/]+)\/predict$/);
+      const predMatch = path.match(/^\/api\/participants\/([^/]+)\/predict\/?$/);
       if (predMatch && method === 'POST') {
         const partId = predMatch[1];
         const body = await request.json().catch(() => ({}));
@@ -199,7 +199,7 @@ export default {
         return jsonResponse(res, res.ok ? 201 : 400);
       }
 
-      const predHistMatch = path.match(/^\/api\/participants\/([^/]+)\/predictions$/);
+      const predHistMatch = path.match(/^\/api\/participants\/([^/]+)\/predictions\/?$/);
       if (predHistMatch && method === 'GET') {
         const partId = predHistMatch[1];
         const res = await getPredictionsForParticipant(db, partId);
@@ -209,12 +209,12 @@ export default {
       // -------------------------------------------------------------
       // RESEARCH & CSV EXPORT ROUTES
       // -------------------------------------------------------------
-      if (path === '/api/research/summary' && method === 'GET') {
+      if ((path === '/api/research/summary' || path === '/api/research/summary/') && method === 'GET') {
         const res = await getResearchSummary(db);
         return jsonResponse(res);
       }
 
-      if (path === '/api/research/export.csv' && method === 'GET') {
+      if ((path === '/api/research/export.csv' || path === '/api/research/export.csv/') && method === 'GET') {
         const auth = verifyAuth(request, env, [USER_ROLES.ADMIN, USER_ROLES.RESEARCHER]);
         if (!auth.authenticated) return errorResponse(auth.error, auth.code, 403);
 
