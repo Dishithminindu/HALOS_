@@ -12,8 +12,8 @@ compatibility_date = "2024-09-23"
 # All INSERT, SELECT, UPDATE, and DELETE operations are performed through env.DB.
 [[d1_databases]]
 binding = "DB"
-database_name = "halos-d1"
-database_id = "halos-d1-production"
+database_name = "my-d"
+database_id = "96063eba-fdc4-4423-a790-d464d231b0f0"
 migrations_dir = "worker/migrations"
 
 [vars]
