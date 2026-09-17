@@ -229,6 +229,10 @@ export default {
         });
       }
 
+      if (env.ASSETS) {
+        return env.ASSETS.fetch(request);
+      }
+
       return errorResponse(`API Route not found: ${method} ${path}`, 'NOT_FOUND', 404);
     } catch (err) {
       console.error('[WORKER_INTERNAL_ERROR]', err);
